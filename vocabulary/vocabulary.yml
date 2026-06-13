@@ -1,0 +1,177 @@
+vocabulary:
+  title: TextGears API Vocabulary
+  description: Domain terminology and concepts used in the TextGears text analysis API
+  source: https://textgears.com/api
+  terms:
+    - term: Grammar Error
+      definition: >-
+        A deviation from standard grammatical rules in a text, including issues
+        with subject-verb agreement, tense consistency, pronoun usage, and
+        sentence structure.
+      type: concept
+      related:
+        - Spelling Error
+        - Grammar Check
+
+    - term: Spelling Error
+      definition: >-
+        An incorrectly spelled word in the input text, detected by comparing
+        against a dictionary of known correct spellings for the specified language.
+      type: concept
+      related:
+        - Grammar Error
+        - Spelling Check
+
+    - term: Grammar Check
+      definition: >-
+        Analysis of text to identify grammar, spelling, style, and punctuation
+        errors, returning error locations, erroneous text, and correction suggestions.
+      type: operation
+      endpoint: /grammar
+
+    - term: Spelling Check
+      definition: >-
+        Lightweight analysis of text focused only on spelling mistakes, without
+        full grammar evaluation. Faster and more efficient than full grammar check.
+      type: operation
+      endpoint: /spelling
+
+    - term: Auto-Correction
+      definition: >-
+        Automatic application of grammar and spelling corrections to input text,
+        returning the corrected version as a string.
+      type: operation
+      endpoint: /correct
+
+    - term: Readability Score
+      definition: >-
+        A numeric measure of how easy or difficult a piece of text is to read,
+        calculated using established algorithms such as Flesch-Kincaid, Gunning
+        Fog, Coleman-Liau, and SMOG.
+      type: concept
+      related:
+        - Flesch-Kincaid
+        - Gunning Fog
+        - Coleman-Liau
+        - SMOG
+
+    - term: Flesch-Kincaid
+      definition: >-
+        A readability test that produces a reading ease score (0-100, higher is
+        easier) and an approximate U.S. grade level for the text. Based on
+        average sentence length and average syllables per word.
+      type: metric
+
+    - term: Gunning Fog Index
+      definition: >-
+        A readability formula that estimates the years of formal education needed
+        to understand a text on first reading. Higher values indicate more complex text.
+      type: metric
+
+    - term: Coleman-Liau Index
+      definition: >-
+        A readability formula that approximates the U.S. grade level needed to
+        comprehend a text, calculated using characters per word rather than syllables.
+      type: metric
+
+    - term: SMOG Index
+      definition: >-
+        Simple Measure of Gobbledygook — a readability formula that estimates
+        the years of education needed to understand text based on the number of
+        polysyllabic words.
+      type: metric
+
+    - term: Language Detection
+      definition: >-
+        Analysis of text to automatically determine its written language and
+        dialect, returning a ranked list of candidate languages with probability
+        scores.
+      type: operation
+      endpoint: /detect
+
+    - term: Text Summarization
+      definition: >-
+        Extraction of key sentences and keywords from a longer text to produce
+        a condensed summary that captures the most important information.
+      type: operation
+      endpoint: /summarize
+
+    - term: Text Analysis
+      definition: >-
+        Comprehensive analysis combining grammar checking with readability
+        metrics and text statistics in a single API call.
+      type: operation
+      endpoint: /analyze
+
+    - term: Custom Dictionary
+      definition: >-
+        A user-defined collection of words, phrases, and exceptions that are
+        excluded from error detection or given custom treatment during text analysis.
+      type: resource
+
+    - term: Exception
+      definition: >-
+        A word or phrase added to a custom dictionary that should be excluded
+        from error flagging during grammar or spelling checks.
+      type: concept
+      related:
+        - Custom Dictionary
+        - Whitelist
+
+    - term: Whitelist
+      definition: >-
+        A per-request list of words or phrases to exclude from error detection,
+        passed as an array in the API request body.
+      type: parameter
+
+    - term: API Key
+      definition: >-
+        Authentication credential for the TextGears API, passed as a query
+        parameter, POST body field, or HTTP Basic Authorization header value.
+      type: concept
+
+    - term: Error Offset
+      definition: >-
+        The zero-based character position in the input text where a detected
+        error begins, used to locate and highlight errors in the original text.
+      type: field
+
+    - term: Error Length
+      definition: >-
+        The number of characters in the detected error span, used together with
+        offset to identify the exact erroneous text in the input.
+      type: field
+
+    - term: Paraphrase
+      definition: >-
+        Rewriting of provided text while preserving its meaning, with optional
+        creativity level control to vary how different the output is from the input.
+      type: operation
+      endpoint: /paraphrase
+
+    - term: Translation
+      definition: >-
+        Conversion of text from its source language into a specified target
+        language using the TextGears translation endpoint.
+      type: operation
+      endpoint: /translate
+
+    - term: Sentence Splitting
+      definition: >-
+        Segmentation of input text into individual sentences, returning an
+        ordered array of sentence strings.
+      type: operation
+      endpoint: /split
+
+    - term: BCP 47
+      definition: >-
+        IETF Best Current Practice 47 — a standardized format for language tags
+        used by TextGears to specify language and dialect codes (e.g., en-US, fr-FR).
+      type: standard
+
+    - term: Resource Quota
+      definition: >-
+        The maximum number of API requests allowed for an account within a
+        billing period, along with current usage and remaining capacity.
+      type: concept
+      endpoint: /account/resourcequota

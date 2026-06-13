@@ -1,0 +1,33 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.textgears.com/detect",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "text": "The quick brown fox jumps over the lazy dog.",
+      "key": "YOUR_API_KEY"
+    }
+  },
+  "response": {
+    "status": true,
+    "response": {
+      "language": "en-US",
+      "multiLanguages": [
+        {
+          "language": "en-US",
+          "score": 0.92
+        },
+        {
+          "language": "en-GB",
+          "score": 0.07
+        },
+        {
+          "language": "en-AU",
+          "score": 0.01
+        }
+      ]
+    }
+  }
+}

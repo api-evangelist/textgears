@@ -1,0 +1,35 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.textgears.com/summarize",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "text": "Natural language processing (NLP) is a subfield of linguistics, computer science, and artificial intelligence concerned with the interactions between computers and human language. NLP is used to apply algorithms to identify and extract natural language rules so that the unstructured language data is converted into a form that computers can understand. NLP is important because it helps resolve ambiguity in language and adds useful numeric structure to the data for many downstream applications such as speech recognition or text analytics.",
+      "language": "en-US",
+      "key": "YOUR_API_KEY"
+    }
+  },
+  "response": {
+    "status": true,
+    "response": {
+      "keywords": [
+        {"key": "natural language processing", "count": 3, "score": 0.98},
+        {"key": "NLP", "count": 3, "score": 0.95},
+        {"key": "language", "count": 5, "score": 0.87},
+        {"key": "algorithms", "count": 1, "score": 0.62},
+        {"key": "computers", "count": 2, "score": 0.60}
+      ],
+      "highlight": [
+        "Natural language processing (NLP) is a subfield of linguistics, computer science, and artificial intelligence concerned with the interactions between computers and human language.",
+        "NLP is important because it helps resolve ambiguity in language and adds useful numeric structure to the data for many downstream applications."
+      ],
+      "sentences": [
+        "Natural language processing (NLP) is a subfield of linguistics, computer science, and artificial intelligence concerned with the interactions between computers and human language.",
+        "NLP is used to apply algorithms to identify and extract natural language rules so that the unstructured language data is converted into a form that computers can understand.",
+        "NLP is important because it helps resolve ambiguity in language and adds useful numeric structure to the data for many downstream applications such as speech recognition or text analytics."
+      ]
+    }
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "textgears": "https://textgears.com/vocab#",
+    "openapi": "https://openapis.org/vocab#"
+  },
+  "@type": "WebAPI",
+  "@id": "https://textgears.com/api",
+  "name": "TextGears API",
+  "description": "Grammar checking and text analysis REST API providing spelling corrections, grammar error detection, readability scoring, language detection, and text summarization across 11 languages.",
+  "url": "https://textgears.com/api",
+  "provider": {
+    "@type": "Organization",
+    "name": "TextGears",
+    "url": "https://textgears.com",
+    "sameAs": [
+      "https://github.com/textgears",
+      "https://www.linkedin.com/company/textgears",
+      "https://x.com/textgears"
+    ]
+  },
+  "termsOfService": "https://textgears.com/terms",
+  "offers": {
+    "@type": "Offer",
+    "url": "https://textgears.com/#pricing",
+    "description": "Multiple pricing tiers based on monthly request volume"
+  },
+  "availableChannel": [
+    {
+      "@type": "ServiceChannel",
+      "name": "Auto-routing",
+      "serviceUrl": "https://api.textgears.com"
+    },
+    {
+      "@type": "ServiceChannel",
+      "name": "Europe",
+      "serviceUrl": "https://eu.api.textgears.com"
+    },
+    {
+      "@type": "ServiceChannel",
+      "name": "United States",
+      "serviceUrl": "https://us.api.textgears.com"
+    },
+    {
+      "@type": "ServiceChannel",
+      "name": "Asia (Singapore)",
+      "serviceUrl": "https://sg.api.textgears.com"
+    }
+  ],
+  "serviceType": [
+    "Grammar Checking",
+    "Spelling Correction",
+    "Readability Analysis",
+    "Language Detection",
+    "Text Summarization",
+    "Natural Language Processing"
+  ],
+  "inLanguage": [
+    "en-US", "en-GB", "en-ZA", "en-AU", "en-NZ",
+    "fr-FR",
+    "de-DE", "de-AT", "de-CH",
+    "pt-PT", "pt-BR",
+    "it-IT",
+    "ar-AR",
+    "ru-RU",
+    "es-ES",
+    "ja-JP",
+    "zh-CN",
+    "el-GR"
+  ],
+  "documentation": "https://textgears.com/api",
+  "hasAPI": [
+    {
+      "@type": "EntryPoint",
+      "name": "Grammar Check",
+      "url": "https://api.textgears.com/grammar",
+      "httpMethod": "POST",
+      "description": "Identifies spelling, grammar, style, and punctuation errors with suggested corrections"
+    },
+    {
+      "@type": "EntryPoint",
+      "name": "Spelling Check",
+      "url": "https://api.textgears.com/spelling",
+      "httpMethod": "POST",
+      "description": "Detects spelling mistakes only, lighter-weight alternative to full grammar check"
+    },
+    {
+      "@type": "EntryPoint",
+      "name": "Auto-Correct",
+      "url": "https://api.textgears.com/correct",
+      "httpMethod": "POST",
+      "description": "Returns auto-corrected version of input text"
+    },
+    {
+      "@type": "EntryPoint",
+      "name": "Suggest",
+      "url": "https://api.textgears.com/suggest",
+      "httpMethod": "POST",
+      "description": "Returns style and grammar improvement suggestions"
+    },
+    {
+      "@type": "EntryPoint",
+      "name": "Readability",
+      "url": "https://api.textgears.com/readability",
+      "httpMethod": "POST",
+      "description": "Calculates readability metrics using Flesch-Kincaid, Gunning Fog, Coleman-Liau, and SMOG algorithms"
+    },
+    {
+      "@type": "EntryPoint",
+      "name": "Analyze",
+      "url": "https://api.textgears.com/analyze",
+      "httpMethod": "POST",
+      "description": "Combines grammar checking with readability metrics in a single request"
+    },
+    {
+      "@type": "EntryPoint",
+      "name": "Detect Language",
+      "url": "https://api.textgears.com/detect",
+      "httpMethod": "POST",
+      "description": "Determines text language and dialect with probability scores"
+    },
+    {
+      "@type": "EntryPoint",
+      "name": "Summarize",
+      "url": "https://api.textgears.com/summarize",
+      "httpMethod": "POST",
+      "description": "Extracts key sentences and ranked keywords from longer texts"
+    },
+    {
+      "@type": "EntryPoint",
+      "name": "Paraphrase",
+      "url": "https://api.textgears.com/paraphrase",
+      "httpMethod": "POST",
+      "description": "Returns a paraphrased version of the input text"
+    },
+    {
+      "@type": "EntryPoint",
+      "name": "Translate",
+      "url": "https://api.textgears.com/translate",
+      "httpMethod": "POST",
+      "description": "Translates text to a specified target language"
+    },
+    {
+      "@type": "EntryPoint",
+      "name": "Split Sentences",
+      "url": "https://api.textgears.com/split",
+      "httpMethod": "POST",
+      "description": "Splits text into individual sentences"
+    }
+  ],
+  "textgears:requestsPerDay": 10800000,
+  "textgears:sla": "99.9% availability"
+}

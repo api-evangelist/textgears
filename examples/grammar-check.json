@@ -1,0 +1,39 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.textgears.com/grammar",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "text": "I is a student and I goes to school every day.",
+      "language": "en-US",
+      "key": "YOUR_API_KEY"
+    }
+  },
+  "response": {
+    "status": true,
+    "response": {
+      "errors": [
+        {
+          "id": "e492411846",
+          "offset": 2,
+          "length": 2,
+          "bad": "is",
+          "better": ["am"],
+          "type": "grammar",
+          "description": "Subject-verb agreement: use 'am' with 'I'"
+        },
+        {
+          "id": "e938271645",
+          "offset": 18,
+          "length": 4,
+          "bad": "goes",
+          "better": ["go"],
+          "type": "grammar",
+          "description": "Subject-verb agreement: use 'go' with 'I'"
+        }
+      ]
+    }
+  }
+}

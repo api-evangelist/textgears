@@ -1,0 +1,48 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.textgears.com/spelling",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "text": "The quik brown fox jumpd over the lazzy dog.",
+      "language": "en-US",
+      "key": "YOUR_API_KEY"
+    }
+  },
+  "response": {
+    "status": true,
+    "response": {
+      "errors": [
+        {
+          "id": "s112233445",
+          "offset": 4,
+          "length": 4,
+          "bad": "quik",
+          "better": ["quick"],
+          "type": "spelling",
+          "description": "Misspelled word"
+        },
+        {
+          "id": "s556677889",
+          "offset": 19,
+          "length": 5,
+          "bad": "jumpd",
+          "better": ["jumped"],
+          "type": "spelling",
+          "description": "Misspelled word"
+        },
+        {
+          "id": "s991122334",
+          "offset": 34,
+          "length": 5,
+          "bad": "lazzy",
+          "better": ["lazy"],
+          "type": "spelling",
+          "description": "Misspelled word"
+        }
+      ]
+    }
+  }
+}

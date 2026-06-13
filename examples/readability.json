@@ -1,0 +1,36 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.textgears.com/readability",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "text": "The mitochondria is the powerhouse of the cell. Complex cellular organelles perform specialized functions that are essential for the survival of eukaryotic organisms.",
+      "language": "en-US",
+      "key": "YOUR_API_KEY"
+    }
+  },
+  "response": {
+    "status": true,
+    "response": {
+      "stats": {
+        "fleschKincaid": {
+          "readingEase": 28.3,
+          "grade": 14.2
+        },
+        "gunningFog": 16.1,
+        "colemanLiau": 15.8,
+        "smog": 14.9,
+        "wordCount": 27,
+        "sentenceCount": 2,
+        "characterCount": 164
+      },
+      "emotion": {
+        "positive": 0.1,
+        "negative": 0.05,
+        "neutral": 0.85
+      }
+    }
+  }
+}

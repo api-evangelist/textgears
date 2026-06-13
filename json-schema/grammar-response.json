@@ -1,0 +1,75 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://api.textgears.com/schema/grammar-response",
+  "title": "Grammar Check Response",
+  "description": "Response from TextGears grammar and spelling check endpoints",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "boolean",
+      "description": "Whether the request was successful"
+    },
+    "response": {
+      "type": "object",
+      "properties": {
+        "errors": {
+          "type": "array",
+          "description": "List of detected errors",
+          "items": {
+            "$ref": "#/definitions/GrammarError"
+          }
+        }
+      }
+    },
+    "error_code": {
+      "type": "integer",
+      "description": "Error code when status is false",
+      "enum": [500, 501, 600, 606, 607]
+    },
+    "description": {
+      "type": "string",
+      "description": "Error description when status is false"
+    }
+  },
+  "definitions": {
+    "GrammarError": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique error identifier"
+        },
+        "offset": {
+          "type": "integer",
+          "description": "Character offset of the error in the original text",
+          "minimum": 0
+        },
+        "length": {
+          "type": "integer",
+          "description": "Length of the error span in characters",
+          "minimum": 1
+        },
+        "bad": {
+          "type": "string",
+          "description": "The erroneous text fragment"
+        },
+        "better": {
+          "type": "array",
+          "description": "Suggested corrections",
+          "items": {
+            "type": "string"
+          }
+        },
+        "type": {
+          "type": "string",
+          "description": "Error type classification",
+          "enum": ["grammar", "spelling", "punctuation", "style"]
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable error description"
+        }
+      }
+    }
+  }
+}

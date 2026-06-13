@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://api.textgears.com/schema/grammar-request",
+  "title": "Grammar Check Request",
+  "description": "Request body for TextGears grammar and spelling check endpoints",
+  "type": "object",
+  "required": ["text"],
+  "properties": {
+    "text": {
+      "type": "string",
+      "description": "UTF-8 encoded text to analyze",
+      "minLength": 1
+    },
+    "language": {
+      "type": "string",
+      "description": "Language code in BCP 47 format",
+      "default": "en-US",
+      "enum": [
+        "en-US", "en-GB", "en-ZA", "en-AU", "en-NZ",
+        "fr-FR",
+        "de-DE", "de-AT", "de-CH",
+        "pt-PT", "pt-BR",
+        "it-IT",
+        "ar-AR",
+        "ru-RU",
+        "es-ES",
+        "ja-JP",
+        "zh-CN",
+        "el-GR"
+      ]
+    },
+    "key": {
+      "type": "string",
+      "description": "API authentication key"
+    },
+    "ai": {
+      "type": "boolean",
+      "description": "Enable AI-enhanced analysis",
+      "default": false
+    },
+    "whitelist": {
+      "type": "array",
+      "description": "Words or phrases to exclude from error detection",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dictionary_id": {
+      "type": "string",
+      "description": "Custom dictionary identifier"
+    },
+    "rules": {
+      "type": "array",
+      "description": "Specific grammar rules to apply or exclude",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://api.textgears.com/schema/detect-response",
+  "title": "Language Detection Response",
+  "description": "Response from TextGears language detection endpoint",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "boolean",
+      "description": "Whether the request was successful"
+    },
+    "response": {
+      "type": "object",
+      "properties": {
+        "language": {
+          "type": "string",
+          "description": "Most likely language code detected (BCP 47)"
+        },
+        "multiLanguages": {
+          "type": "array",
+          "description": "Ranked list of language candidates with probability scores",
+          "items": {
+            "type": "object",
+            "properties": {
+              "language": {
+                "type": "string",
+                "description": "Language code (BCP 47)"
+              },
+              "score": {
+                "type": "number",
+                "description": "Probability score between 0.0 and 1.0",
+                "minimum": 0,
+                "maximum": 1
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
