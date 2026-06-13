@@ -1,0 +1,105 @@
+plans:
+  - name: Free
+    description: >-
+      No-cost entry tier for developers evaluating the TextGears API. Includes
+      500 text-checking requests and 200,000 translation/rephrase characters per
+      month. No credit card required.
+    price: 0.00
+    currency: USD
+    billingCycle: monthly
+    url: https://textgears.com/#pricing
+    limits:
+      - type: Requests
+        quota: 500
+        period: monthly
+        scope: text-checking
+      - type: Characters
+        quota: 200000
+        period: monthly
+        scope: translation-rephrase
+    features:
+      - Basic usage statistics
+      - Max text length 4,000 characters per request
+      - JSON API responses
+      - 11 supported languages
+
+  - name: Silver
+    description: >-
+      Entry-level paid plan for small teams and individual developers with
+      50,000 text-checking requests per month and 24/7 support.
+    price: 29.95
+    currency: USD
+    billingCycle: monthly
+    url: https://textgears.com/#pricing
+    limits:
+      - type: Requests
+        quota: 50000
+        period: monthly
+        scope: text-checking
+      - type: Characters
+        quota: 20000000
+        period: monthly
+        scope: translation-rephrase
+    features:
+      - 24/7 support
+      - Usage statistics
+      - AI-powered analysis
+      - Max text length 4,000 characters per request
+      - 20% discount with annual billing
+
+  - name: Gold
+    description: >-
+      Mid-tier plan for growing applications requiring 500,000 text-checking
+      requests per month, extended text length support, and advanced features
+      such as custom dictionaries and data center selection.
+    price: 99.95
+    currency: USD
+    billingCycle: monthly
+    url: https://textgears.com/#pricing
+    limits:
+      - type: Requests
+        quota: 500000
+        period: monthly
+        scope: text-checking
+      - type: Characters
+        quota: 100000000
+        period: monthly
+        scope: translation-rephrase
+    features:
+      - 24/7 support
+      - Usage statistics
+      - AI-powered analysis
+      - Data center selection (EU, US, Asia)
+      - Custom dictionary setup
+      - Max text length 16,000 characters per request
+      - 20% discount with annual billing
+
+  - name: Platinum
+    description: >-
+      Enterprise plan for large-scale deployments requiring millions of requests
+      per month. Custom quotas, text length limits, and SLA conditions available
+      upon request.
+    price: 0.00
+    currency: USD
+    billingCycle: custom
+    url: https://textgears.com/#pricing
+    limits:
+      - type: Requests
+        quota: null
+        period: monthly
+        scope: text-checking
+        notes: Custom — contact sales
+      - type: Characters
+        quota: null
+        period: monthly
+        scope: translation-rephrase
+        notes: Custom — contact sales
+    features:
+      - 24/7 priority support
+      - Full usage statistics
+      - AI-powered analysis
+      - Data center selection
+      - Custom dictionary setup
+      - Custom max text length
+      - Special SLA conditions
+      - Volume pricing

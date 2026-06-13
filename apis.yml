@@ -1,0 +1,70 @@
+aid: textgears
+name: TextGears
+description: >-
+  TextGears is a grammar checking and text analysis REST API providing spelling
+  corrections, grammar error detection, readability scoring, language detection,
+  and text summarization across 11 languages. The service processes over 10.8
+  million API requests daily and offers distributed infrastructure across
+  Estonia, Singapore, and the United States for low-latency access.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/textgears/refs/heads/main/apis.yml
+created: '2026-06-13'
+modified: '2026-06-13'
+specificationVersion: '0.19'
+tags:
+  - Grammar
+  - Spelling
+  - Text Analysis
+  - Readability
+  - Natural Language Processing
+  - NLP
+  - Text Summarization
+  - Language Detection
+apis:
+  - aid: textgears:textgears-api
+    name: TextGears API
+    description: >-
+      REST API for grammar checking, spelling correction, readability analysis,
+      text summarization, language detection, and custom dictionary management.
+      Supports 11 languages and multiple English dialects. Authentication via
+      API key passed as a query parameter, POST body, or Authorization header.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://textgears.com/api
+    baseURL: https://api.textgears.com
+    tags:
+      - Grammar
+      - Spelling
+      - Readability
+      - Summarization
+      - Language Detection
+    properties:
+      - type: Documentation
+        url: https://textgears.com/api
+      - type: Plans
+        url: https://raw.githubusercontent.com/api-evangelist/textgears/refs/heads/main/plans/plans.yml
+      - type: RateLimits
+        url: https://raw.githubusercontent.com/api-evangelist/textgears/refs/heads/main/rate-limits/rate-limits.yml
+      - type: FinOps
+        url: https://raw.githubusercontent.com/api-evangelist/textgears/refs/heads/main/finops/finops.yml
+common:
+  - type: Website
+    url: https://textgears.com
+  - type: Documentation
+    url: https://textgears.com/api
+  - type: GitHubOrg
+    url: https://github.com/textgears
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/textgears
+  - type: Pricing
+    url: https://textgears.com/#pricing
+  - type: X
+    url: https://x.com/textgears
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/textgears/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: https://raw.githubusercontent.com/api-evangelist/textgears/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: https://raw.githubusercontent.com/api-evangelist/textgears/refs/heads/main/finops/finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

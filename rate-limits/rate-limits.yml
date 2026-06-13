@@ -1,0 +1,99 @@
+rateLimits:
+  - plan: Free
+    description: >-
+      Free tier accounts are limited to 500 text-checking API calls per month.
+      Exceeding this quota returns HTTP error code 607 (allowed number of
+      requests exceeded). Max text length is 4,000 characters per request.
+    limits:
+      - type: Requests
+        quota: 500
+        period: monthly
+        enforcement: hard
+        errorCode: 607
+        errorMessage: Allowed number of requests exceeded
+      - type: TextLength
+        quota: 4000
+        unit: characters
+        per: request
+        enforcement: hard
+        errorCode: 501
+        errorMessage: Text length exceeds limit
+
+  - plan: Silver
+    description: >-
+      Silver plan accounts are limited to 50,000 text-checking API calls per
+      month. Max text length is 4,000 characters per request.
+    limits:
+      - type: Requests
+        quota: 50000
+        period: monthly
+        enforcement: hard
+        errorCode: 607
+        errorMessage: Allowed number of requests exceeded
+      - type: TextLength
+        quota: 4000
+        unit: characters
+        per: request
+        enforcement: hard
+        errorCode: 501
+        errorMessage: Text length exceeds limit
+
+  - plan: Gold
+    description: >-
+      Gold plan accounts are limited to 500,000 text-checking API calls per
+      month. Max text length is expanded to 16,000 characters per request.
+    limits:
+      - type: Requests
+        quota: 500000
+        period: monthly
+        enforcement: hard
+        errorCode: 607
+        errorMessage: Allowed number of requests exceeded
+      - type: TextLength
+        quota: 16000
+        unit: characters
+        per: request
+        enforcement: hard
+        errorCode: 501
+        errorMessage: Text length exceeds limit
+
+  - plan: Platinum
+    description: >-
+      Custom quota negotiated with TextGears sales. Millions of requests per
+      month with custom text length limits and SLA guarantees.
+    limits:
+      - type: Requests
+        quota: null
+        period: monthly
+        enforcement: custom
+        notes: Negotiated per contract
+      - type: TextLength
+        quota: null
+        unit: characters
+        per: request
+        enforcement: custom
+        notes: Negotiated per contract
+
+errorCodes:
+  - code: 600
+    message: Invalid API key
+  - code: 501
+    message: Text length exceeds billing plan limit
+  - code: 606
+    message: Unsupported language
+  - code: 607
+    message: Allowed number of requests exceeded (rate limit)
+  - code: 500
+    message: Internal service error
+
+infrastructure:
+  availability: 99.9%
+  regions:
+    - name: Europe
+      baseURL: https://eu.api.textgears.com
+    - name: Americas
+      baseURL: https://us.api.textgears.com
+    - name: Asia
+      baseURL: https://sg.api.textgears.com
+    - name: Automatic (global routing)
+      baseURL: https://api.textgears.com

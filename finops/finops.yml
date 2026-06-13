@@ -1,0 +1,88 @@
+finops:
+  description: >-
+    TextGears API uses a request-based subscription model billed monthly or
+    annually. Annual billing provides a 20% discount across all paid plans.
+    Usage is metered against monthly quotas with hard enforcement — exceeding
+    the quota returns error code 607. No pay-per-use overage is documented;
+    upgrade to the next plan tier to increase capacity.
+
+  billing:
+    model: subscription
+    cycles:
+      - monthly
+      - annual
+    annualDiscount: 20
+    currency: USD
+    paymentRequired: false
+    notes: Free plan requires no credit card.
+
+  costDrivers:
+    - name: Text-Checking Requests
+      description: >-
+        Each call to /grammar, /spelling, /correct, /suggest, /detect,
+        /analyze, or /readability consumes one request from the monthly quota.
+      unit: request
+      scope: monthly-quota
+
+    - name: Translation and Rephrase Characters
+      description: >-
+        Characters processed by translation and rephrasing endpoints are counted
+        separately against the character quota included in each plan.
+      unit: character
+      scope: monthly-quota
+
+    - name: Text Length per Request
+      description: >-
+        Maximum text length per API call is gated by plan tier. Free and Silver
+        allow up to 4,000 characters; Gold allows up to 16,000 characters.
+        Platinum is custom.
+      unit: characters-per-request
+      scope: per-call
+
+  optimization:
+    - tip: Use annual billing for a 20% cost reduction on Silver and Gold plans.
+    - tip: >-
+        Batch shorter texts into a single request where possible to minimize
+        request consumption against the monthly quota.
+    - tip: >-
+        Use the /spelling endpoint instead of /grammar when only typo detection
+        is needed — verify whether endpoint-specific quotas apply for your use
+        case.
+    - tip: >-
+        Monitor quota consumption via GET /account/resourcequota to avoid
+        unexpected 607 errors in production.
+    - tip: >-
+        Select a regional base URL (eu, us, sg) to reduce latency and avoid
+        round-trips through automatic routing when traffic is region-specific.
+
+  pricingURL: https://textgears.com/#pricing
+
+  tiers:
+    - plan: Free
+      monthlyPrice: 0.00
+      annualMonthlyPrice: 0.00
+      requestQuota: 500
+      characterQuota: 200000
+      maxTextLength: 4000
+
+    - plan: Silver
+      monthlyPrice: 29.95
+      annualMonthlyPrice: 23.96
+      requestQuota: 50000
+      characterQuota: 20000000
+      maxTextLength: 4000
+
+    - plan: Gold
+      monthlyPrice: 99.95
+      annualMonthlyPrice: 79.96
+      requestQuota: 500000
+      characterQuota: 100000000
+      maxTextLength: 16000
+
+    - plan: Platinum
+      monthlyPrice: null
+      annualMonthlyPrice: null
+      requestQuota: null
+      characterQuota: null
+      maxTextLength: null
+      notes: Contact TextGears sales for custom enterprise pricing.
