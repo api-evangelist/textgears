@@ -6,7 +6,7 @@ description: >-
   and text summarization across 11 languages. The service processes over 10.8
   million API requests daily and offers distributed infrastructure across
   Estonia, Singapore, and the United States for low-latency access.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/textgears/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -28,7 +28,7 @@ apis:
       text summarization, language detection, and custom dictionary management.
       Supports 11 languages and multiple English dialects. Authentication via
       API key passed as a query parameter, POST body, or Authorization header.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://textgears.com/api
     baseURL: https://api.textgears.com
     tags:
