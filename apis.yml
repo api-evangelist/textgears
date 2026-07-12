@@ -49,6 +49,10 @@ apis:
       - type: FinOps
         url: https://raw.githubusercontent.com/api-evangelist/textgears/refs/heads/main/finops/finops.yml
 common:
+  - type: DomainSecurity
+    url: security/textgears-domain-security.yml
+  - type: Authentication
+    url: authentication/textgears-authentication.yml
   - type: Website
     url: https://textgears.com
   - type: Documentation
