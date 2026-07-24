@@ -1,0 +1,143 @@
+openapi: 3.0.3
+info:
+  title: TextGears Account Language API
+  description: TextGears is a grammar checking and text analysis REST API providing spelling corrections, grammar error detection, readability scoring, language detection, text summarization, and custom dictionary management across 11 languages. The service processes over 10.8 million API requests daily with distributed infrastructure across Estonia, Singapore, and the United States.
+  version: 1.0.0
+  contact:
+    url: https://textgears.com
+  termsOfService: https://textgears.com/terms
+  license:
+    name: Commercial
+    url: https://textgears.com
+servers:
+- url: https://api.textgears.com
+  description: Auto-routing (recommended)
+- url: https://eu.api.textgears.com
+  description: Europe
+- url: https://us.api.textgears.com
+  description: United States
+- url: https://sg.api.textgears.com
+  description: Asia (Singapore)
+security:
+- apiKeyQuery: []
+- apiKeyHeader: []
+tags:
+- name: Language
+  description: Language detection
+paths:
+  /detect:
+    post:
+      operationId: detectLanguage
+      summary: Detect language
+      description: Determines the language and dialect of the provided text with probability scores for multiple language candidates.
+      tags:
+      - Language
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DetectRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DetectRequest'
+      responses:
+        '200':
+          description: Language detection result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DetectResponse'
+              example:
+                status: true
+                response:
+                  language: en-US
+                  multiLanguages:
+                  - language: en-US
+                    score: 0.95
+                  - language: en-GB
+                    score: 0.05
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+components:
+  responses:
+    ErrorResponse:
+      description: API error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            invalidKey:
+              summary: Invalid API key
+              value:
+                status: false
+                error_code: 600
+                description: Invalid key
+            rateLimitExceeded:
+              summary: Rate limit exceeded
+              value:
+                status: false
+                error_code: 607
+                description: Request limit exceeded
+  schemas:
+    DetectRequest:
+      type: object
+      required:
+      - text
+      properties:
+        text:
+          type: string
+          description: UTF-8 encoded text for language detection
+        key:
+          type: string
+          description: API authentication key
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+          example: false
+        error_code:
+          type: integer
+          description: Error code
+          enum:
+          - 500
+          - 501
+          - 600
+          - 606
+          - 607
+        description:
+          type: string
+          description: Human-readable error description
+    DetectResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        response:
+          type: object
+          properties:
+            language:
+              type: string
+              description: Most likely language code detected
+            multiLanguages:
+              type: array
+              items:
+                type: object
+                properties:
+                  language:
+                    type: string
+                  score:
+                    type: number
+                    description: Probability score (0.0 to 1.0)
+  securitySchemes:
+    apiKeyQuery:
+      type: apiKey
+      in: query
+      name: key
+      description: API key passed as a query parameter
+    apiKeyHeader:
+      type: http
+      scheme: basic
+      description: API key passed as HTTP Basic Authorization header value

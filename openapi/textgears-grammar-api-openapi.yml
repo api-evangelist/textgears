@@ -1,0 +1,420 @@
+openapi: 3.0.3
+info:
+  title: TextGears Account Grammar API
+  description: TextGears is a grammar checking and text analysis REST API providing spelling corrections, grammar error detection, readability scoring, language detection, text summarization, and custom dictionary management across 11 languages. The service processes over 10.8 million API requests daily with distributed infrastructure across Estonia, Singapore, and the United States.
+  version: 1.0.0
+  contact:
+    url: https://textgears.com
+  termsOfService: https://textgears.com/terms
+  license:
+    name: Commercial
+    url: https://textgears.com
+servers:
+- url: https://api.textgears.com
+  description: Auto-routing (recommended)
+- url: https://eu.api.textgears.com
+  description: Europe
+- url: https://us.api.textgears.com
+  description: United States
+- url: https://sg.api.textgears.com
+  description: Asia (Singapore)
+security:
+- apiKeyQuery: []
+- apiKeyHeader: []
+tags:
+- name: Grammar
+  description: Grammar and spelling error detection and correction
+paths:
+  /grammar:
+    post:
+      operationId: checkGrammar
+      summary: Check grammar
+      description: Identifies spelling, grammar, style, and punctuation errors in the provided text with suggested corrections. Supports 11 languages and multiple English dialects.
+      tags:
+      - Grammar
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CheckRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckRequest'
+      responses:
+        '200':
+          description: Grammar check result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GrammarResponse'
+              example:
+                status: true
+                response:
+                  errors:
+                  - id: e492411846
+                    offset: 5
+                    length: 2
+                    bad: is
+                    better:
+                    - am
+                    type: grammar
+                    description: Subject-verb agreement error
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /spelling:
+    post:
+      operationId: checkSpelling
+      summary: Check spelling
+      description: Focuses on widespread spelling mistakes only, offering a lighter-weight alternative to full grammar analysis.
+      tags:
+      - Grammar
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CheckRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckRequest'
+      responses:
+        '200':
+          description: Spelling check result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GrammarResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /correct:
+    post:
+      operationId: correct
+      summary: Auto-correct text
+      description: Returns a corrected version of the input text with grammar and spelling errors automatically fixed.
+      tags:
+      - Grammar
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CheckRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckRequest'
+      responses:
+        '200':
+          description: Auto-corrected text
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CorrectResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /suggest:
+    post:
+      operationId: suggest
+      summary: Get text suggestions
+      description: Returns style and grammar improvement suggestions for the provided text.
+      tags:
+      - Grammar
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BaseRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BaseRequest'
+      responses:
+        '200':
+          description: Text suggestions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GrammarResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /paraphrase:
+    post:
+      operationId: paraphrase
+      summary: Paraphrase text
+      description: Returns a paraphrased version of the provided text. Supports creativity level configuration.
+      tags:
+      - Grammar
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TransformRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransformRequest'
+      responses:
+        '200':
+          description: Paraphrased text
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransformResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /translate:
+    post:
+      operationId: translate
+      summary: Translate text
+      description: Translates the provided text to a specified target language.
+      tags:
+      - Grammar
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TranslateRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TranslateRequest'
+      responses:
+        '200':
+          description: Translated text
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransformResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /split:
+    post:
+      operationId: splitSentences
+      summary: Split text into sentences
+      description: Splits the provided text into individual sentences.
+      tags:
+      - Grammar
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BaseRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BaseRequest'
+      responses:
+        '200':
+          description: Split sentences result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SplitResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+components:
+  schemas:
+    CheckRequest:
+      allOf:
+      - $ref: '#/components/schemas/BaseRequest'
+      - type: object
+        properties:
+          rules:
+            type: array
+            items:
+              type: string
+            description: Specific grammar rules to apply or exclude
+    TransformResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        response:
+          type: object
+          properties:
+            result:
+              type: string
+              description: Transformed text output
+    TranslateRequest:
+      allOf:
+      - $ref: '#/components/schemas/TransformRequest'
+      - type: object
+        required:
+        - target_language
+        properties:
+          target_language:
+            type: string
+            description: Target language code for translation
+            example: fr-FR
+    CorrectResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        response:
+          type: object
+          properties:
+            corrected:
+              type: string
+              description: The auto-corrected text
+    SplitResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        response:
+          type: object
+          properties:
+            sentences:
+              type: array
+              items:
+                type: string
+    GrammarError:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique error identifier
+        offset:
+          type: integer
+          description: Character offset of the error in the original text
+        length:
+          type: integer
+          description: Length of the error span in characters
+        bad:
+          type: string
+          description: The erroneous text
+        better:
+          type: array
+          items:
+            type: string
+          description: Suggested corrections
+        type:
+          type: string
+          description: Error type classification
+          enum:
+          - grammar
+          - spelling
+          - punctuation
+          - style
+        description:
+          type: string
+          description: Human-readable error description
+    GrammarResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+          description: Whether the request was successful
+        response:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                $ref: '#/components/schemas/GrammarError'
+    TransformRequest:
+      allOf:
+      - $ref: '#/components/schemas/CheckRequest'
+      - type: object
+        properties:
+          creativity:
+            type: number
+            description: Creativity level for paraphrasing (0.0 to 1.0)
+            minimum: 0
+            maximum: 1
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+          example: false
+        error_code:
+          type: integer
+          description: Error code
+          enum:
+          - 500
+          - 501
+          - 600
+          - 606
+          - 607
+        description:
+          type: string
+          description: Human-readable error description
+    BaseRequest:
+      type: object
+      required:
+      - text
+      properties:
+        text:
+          type: string
+          description: UTF-8 encoded text to analyze
+        language:
+          type: string
+          description: Language code (BCP 47 format)
+          default: en-US
+          example: en-US
+          enum:
+          - en-US
+          - en-GB
+          - en-ZA
+          - en-AU
+          - en-NZ
+          - fr-FR
+          - de-DE
+          - de-AT
+          - de-CH
+          - pt-PT
+          - pt-BR
+          - it-IT
+          - ar-AR
+          - ru-RU
+          - es-ES
+          - ja-JP
+          - zh-CN
+          - el-GR
+        key:
+          type: string
+          description: API authentication key (if not provided via header or query param)
+        ai:
+          type: boolean
+          description: Enable AI-enhanced analysis
+          default: false
+        whitelist:
+          type: array
+          items:
+            type: string
+          description: Words or phrases to exclude from error detection
+        dictionary_id:
+          type: string
+          description: Custom dictionary identifier to use for exception lookup
+  responses:
+    ErrorResponse:
+      description: API error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            invalidKey:
+              summary: Invalid API key
+              value:
+                status: false
+                error_code: 600
+                description: Invalid key
+            rateLimitExceeded:
+              summary: Rate limit exceeded
+              value:
+                status: false
+                error_code: 607
+                description: Request limit exceeded
+  securitySchemes:
+    apiKeyQuery:
+      type: apiKey
+      in: query
+      name: key
+      description: API key passed as a query parameter
+    apiKeyHeader:
+      type: http
+      scheme: basic
+      description: API key passed as HTTP Basic Authorization header value

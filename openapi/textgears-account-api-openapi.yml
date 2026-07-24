@@ -1,0 +1,152 @@
+openapi: 3.0.3
+info:
+  title: TextGears Account API
+  description: TextGears is a grammar checking and text analysis REST API providing spelling corrections, grammar error detection, readability scoring, language detection, text summarization, and custom dictionary management across 11 languages. The service processes over 10.8 million API requests daily with distributed infrastructure across Estonia, Singapore, and the United States.
+  version: 1.0.0
+  contact:
+    url: https://textgears.com
+  termsOfService: https://textgears.com/terms
+  license:
+    name: Commercial
+    url: https://textgears.com
+servers:
+- url: https://api.textgears.com
+  description: Auto-routing (recommended)
+- url: https://eu.api.textgears.com
+  description: Europe
+- url: https://us.api.textgears.com
+  description: United States
+- url: https://sg.api.textgears.com
+  description: Asia (Singapore)
+security:
+- apiKeyQuery: []
+- apiKeyHeader: []
+tags:
+- name: Account
+  description: Account usage and quota management
+paths:
+  /account/resourcequota:
+    get:
+      operationId: getAccountResourceQuota
+      summary: Get account resource quota
+      description: Returns the current API quota limits for the authenticated account.
+      tags:
+      - Account
+      responses:
+        '200':
+          description: Account resource quota
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuotaResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /account/usage:
+    get:
+      operationId: getAccountUsage
+      summary: Get account usage statistics
+      description: Returns API usage statistics for the authenticated account within a date range.
+      tags:
+      - Account
+      parameters:
+      - name: period_start
+        in: query
+        description: Start of the usage period (Unix timestamp or ISO date)
+        schema:
+          type: string
+      - name: period_end
+        in: query
+        description: End of the usage period (Unix timestamp or ISO date)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Account usage statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsageResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+components:
+  schemas:
+    QuotaResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        response:
+          type: object
+          properties:
+            limit:
+              type: integer
+              description: Total request limit
+            used:
+              type: integer
+              description: Requests used
+            remaining:
+              type: integer
+              description: Remaining requests
+    UsageResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        response:
+          type: array
+          items:
+            type: object
+            properties:
+              date:
+                type: string
+                format: date
+              requests:
+                type: integer
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+          example: false
+        error_code:
+          type: integer
+          description: Error code
+          enum:
+          - 500
+          - 501
+          - 600
+          - 606
+          - 607
+        description:
+          type: string
+          description: Human-readable error description
+  responses:
+    ErrorResponse:
+      description: API error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            invalidKey:
+              summary: Invalid API key
+              value:
+                status: false
+                error_code: 600
+                description: Invalid key
+            rateLimitExceeded:
+              summary: Rate limit exceeded
+              value:
+                status: false
+                error_code: 607
+                description: Request limit exceeded
+  securitySchemes:
+    apiKeyQuery:
+      type: apiKey
+      in: query
+      name: key
+      description: API key passed as a query parameter
+    apiKeyHeader:
+      type: http
+      scheme: basic
+      description: API key passed as HTTP Basic Authorization header value

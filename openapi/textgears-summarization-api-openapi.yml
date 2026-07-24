@@ -1,0 +1,177 @@
+openapi: 3.0.3
+info:
+  title: TextGears Account Summarization API
+  description: TextGears is a grammar checking and text analysis REST API providing spelling corrections, grammar error detection, readability scoring, language detection, text summarization, and custom dictionary management across 11 languages. The service processes over 10.8 million API requests daily with distributed infrastructure across Estonia, Singapore, and the United States.
+  version: 1.0.0
+  contact:
+    url: https://textgears.com
+  termsOfService: https://textgears.com/terms
+  license:
+    name: Commercial
+    url: https://textgears.com
+servers:
+- url: https://api.textgears.com
+  description: Auto-routing (recommended)
+- url: https://eu.api.textgears.com
+  description: Europe
+- url: https://us.api.textgears.com
+  description: United States
+- url: https://sg.api.textgears.com
+  description: Asia (Singapore)
+security:
+- apiKeyQuery: []
+- apiKeyHeader: []
+tags:
+- name: Summarization
+  description: Text summarization and keyword extraction
+paths:
+  /summarize:
+    post:
+      operationId: summarize
+      summary: Summarize text
+      description: Extracts key sentences, highlights important passages, and identifies ranked keywords from longer texts.
+      tags:
+      - Summarization
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BaseRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BaseRequest'
+      responses:
+        '200':
+          description: Text summarization result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SummarizeResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+components:
+  responses:
+    ErrorResponse:
+      description: API error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            invalidKey:
+              summary: Invalid API key
+              value:
+                status: false
+                error_code: 600
+                description: Invalid key
+            rateLimitExceeded:
+              summary: Rate limit exceeded
+              value:
+                status: false
+                error_code: 607
+                description: Request limit exceeded
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+          example: false
+        error_code:
+          type: integer
+          description: Error code
+          enum:
+          - 500
+          - 501
+          - 600
+          - 606
+          - 607
+        description:
+          type: string
+          description: Human-readable error description
+    BaseRequest:
+      type: object
+      required:
+      - text
+      properties:
+        text:
+          type: string
+          description: UTF-8 encoded text to analyze
+        language:
+          type: string
+          description: Language code (BCP 47 format)
+          default: en-US
+          example: en-US
+          enum:
+          - en-US
+          - en-GB
+          - en-ZA
+          - en-AU
+          - en-NZ
+          - fr-FR
+          - de-DE
+          - de-AT
+          - de-CH
+          - pt-PT
+          - pt-BR
+          - it-IT
+          - ar-AR
+          - ru-RU
+          - es-ES
+          - ja-JP
+          - zh-CN
+          - el-GR
+        key:
+          type: string
+          description: API authentication key (if not provided via header or query param)
+        ai:
+          type: boolean
+          description: Enable AI-enhanced analysis
+          default: false
+        whitelist:
+          type: array
+          items:
+            type: string
+          description: Words or phrases to exclude from error detection
+        dictionary_id:
+          type: string
+          description: Custom dictionary identifier to use for exception lookup
+    SummarizeResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        response:
+          type: object
+          properties:
+            keywords:
+              type: array
+              items:
+                type: object
+                properties:
+                  key:
+                    type: string
+                  count:
+                    type: integer
+                  score:
+                    type: number
+            highlight:
+              type: array
+              items:
+                type: string
+              description: Key highlighted sentences
+            sentences:
+              type: array
+              items:
+                type: string
+  securitySchemes:
+    apiKeyQuery:
+      type: apiKey
+      in: query
+      name: key
+      description: API key passed as a query parameter
+    apiKeyHeader:
+      type: http
+      scheme: basic
+      description: API key passed as HTTP Basic Authorization header value
