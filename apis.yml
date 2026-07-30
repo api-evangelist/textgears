@@ -6,7 +6,20 @@ description: >-
   and text summarization across 11 languages. The service processes over 10.8
   million API requests daily and offers distributed infrastructure across
   Estonia, Singapore, and the United States for low-latency access.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/textgears.png
 url: https://raw.githubusercontent.com/api-evangelist/textgears/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -21,33 +34,153 @@ tags:
   - Text Summarization
   - Language Detection
 apis:
-  - aid: textgears:textgears-api
-    name: TextGears API
-    description: >-
-      REST API for grammar checking, spelling correction, readability analysis,
-      text summarization, language detection, and custom dictionary management.
-      Supports 11 languages and multiple English dialects. Authentication via
-      API key passed as a query parameter, POST body, or Authorization header.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://textgears.com/api
-    baseURL: https://api.textgears.com
-    tags:
-      - Grammar
-      - Spelling
-      - Readability
-      - Summarization
-      - Language Detection
-    properties:
-      - type: Documentation
-        url: https://textgears.com/api
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/textgears/refs/heads/main/openapi/openapi.yml
-      - type: Plans
-        url: https://raw.githubusercontent.com/api-evangelist/textgears/refs/heads/main/plans/plans.yml
-      - type: RateLimits
-        url: https://raw.githubusercontent.com/api-evangelist/textgears/refs/heads/main/rate-limits/rate-limits.yml
-      - type: FinOps
-        url: https://raw.githubusercontent.com/api-evangelist/textgears/refs/heads/main/finops/finops.yml
+- aid: textgears:textgears-account-api
+  name: TextGears Account API
+  description: Account usage and quota management
+  humanURL: https://textgears.com/api
+  baseURL: https://api.textgears.com
+  tags:
+  - Account
+  properties:
+  - type: OpenAPI
+    url: openapi/textgears-account-api-openapi.yml
+  - type: Documentation
+    url: https://textgears.com/api
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/textgears/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/textgears/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/textgears/refs/heads/main/finops/finops.yml
+- aid: textgears:textgears-dictionaries-api
+  name: TextGears Dictionaries API
+  description: Custom dictionary management
+  humanURL: https://textgears.com/api
+  baseURL: https://api.textgears.com
+  tags:
+  - Dictionaries
+  properties:
+  - type: OpenAPI
+    url: openapi/textgears-dictionaries-api-openapi.yml
+  - type: Documentation
+    url: https://textgears.com/api
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/textgears/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/textgears/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/textgears/refs/heads/main/finops/finops.yml
+- aid: textgears:textgears-exceptions-api
+  name: TextGears Exceptions API
+  description: Custom exception (whitelist) management
+  humanURL: https://textgears.com/api
+  baseURL: https://api.textgears.com
+  tags:
+  - Exceptions
+  properties:
+  - type: OpenAPI
+    url: openapi/textgears-exceptions-api-openapi.yml
+  - type: Documentation
+    url: https://textgears.com/api
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/textgears/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/textgears/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/textgears/refs/heads/main/finops/finops.yml
+- aid: textgears:textgears-grammar-api
+  name: TextGears Grammar API
+  description: Grammar and spelling error detection and correction
+  humanURL: https://textgears.com/api
+  baseURL: https://api.textgears.com
+  tags:
+  - Grammar
+  properties:
+  - type: OpenAPI
+    url: openapi/textgears-grammar-api-openapi.yml
+  - type: Documentation
+    url: https://textgears.com/api
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/textgears/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/textgears/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/textgears/refs/heads/main/finops/finops.yml
+- aid: textgears:textgears-language-api
+  name: TextGears Language API
+  description: Language detection
+  humanURL: https://textgears.com/api
+  baseURL: https://api.textgears.com
+  tags:
+  - Language
+  properties:
+  - type: OpenAPI
+    url: openapi/textgears-language-api-openapi.yml
+  - type: Documentation
+    url: https://textgears.com/api
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/textgears/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/textgears/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/textgears/refs/heads/main/finops/finops.yml
+- aid: textgears:textgears-readability-api
+  name: TextGears Readability API
+  description: Text readability scoring and analysis
+  humanURL: https://textgears.com/api
+  baseURL: https://api.textgears.com
+  tags:
+  - Readability
+  properties:
+  - type: OpenAPI
+    url: openapi/textgears-readability-api-openapi.yml
+  - type: Documentation
+    url: https://textgears.com/api
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/textgears/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/textgears/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/textgears/refs/heads/main/finops/finops.yml
+- aid: textgears:textgears-summarization-api
+  name: TextGears Summarization API
+  description: Text summarization and keyword extraction
+  humanURL: https://textgears.com/api
+  baseURL: https://api.textgears.com
+  tags:
+  - Summarization
+  properties:
+  - type: OpenAPI
+    url: openapi/textgears-summarization-api-openapi.yml
+  - type: Documentation
+    url: https://textgears.com/api
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/textgears/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/textgears/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/textgears/refs/heads/main/finops/finops.yml
 common:
   - type: AgenticAccess
     url: agentic-access/textgears-agentic-access.yml
