@@ -1,0 +1,1089 @@
+openapi: 3.0.3
+info:
+  title: TextGears API
+  description: >-
+    TextGears is a grammar checking and text analysis REST API providing spelling
+    corrections, grammar error detection, readability scoring, language detection,
+    text summarization, and custom dictionary management across 11 languages.
+    The service processes over 10.8 million API requests daily with distributed
+    infrastructure across Estonia, Singapore, and the United States.
+  version: 1.0.0
+  contact:
+    url: https://textgears.com
+  termsOfService: https://textgears.com/terms
+  license:
+    name: Commercial
+    url: https://textgears.com
+servers:
+  - url: https://api.textgears.com
+    description: Auto-routing (recommended)
+  - url: https://eu.api.textgears.com
+    description: Europe
+  - url: https://us.api.textgears.com
+    description: United States
+  - url: https://sg.api.textgears.com
+    description: Asia (Singapore)
+security:
+  - apiKeyQuery: []
+  - apiKeyHeader: []
+tags:
+  - name: Grammar
+    description: Grammar and spelling error detection and correction
+  - name: Readability
+    description: Text readability scoring and analysis
+  - name: Language
+    description: Language detection
+  - name: Summarization
+    description: Text summarization and keyword extraction
+  - name: Account
+    description: Account usage and quota management
+  - name: Dictionaries
+    description: Custom dictionary management
+  - name: Exceptions
+    description: Custom exception (whitelist) management
+paths:
+  /grammar:
+    post:
+      operationId: checkGrammar
+      summary: Check grammar
+      description: >-
+        Identifies spelling, grammar, style, and punctuation errors in the
+        provided text with suggested corrections. Supports 11 languages and
+        multiple English dialects.
+      tags:
+        - Grammar
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CheckRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckRequest'
+      responses:
+        '200':
+          description: Grammar check result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GrammarResponse'
+              example:
+                status: true
+                response:
+                  errors:
+                    - id: e492411846
+                      offset: 5
+                      length: 2
+                      bad: is
+                      better:
+                        - am
+                      type: grammar
+                      description: Subject-verb agreement error
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /spelling:
+    post:
+      operationId: checkSpelling
+      summary: Check spelling
+      description: >-
+        Focuses on widespread spelling mistakes only, offering a lighter-weight
+        alternative to full grammar analysis.
+      tags:
+        - Grammar
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CheckRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckRequest'
+      responses:
+        '200':
+          description: Spelling check result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GrammarResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /correct:
+    post:
+      operationId: correct
+      summary: Auto-correct text
+      description: >-
+        Returns a corrected version of the input text with grammar and spelling
+        errors automatically fixed.
+      tags:
+        - Grammar
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CheckRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckRequest'
+      responses:
+        '200':
+          description: Auto-corrected text
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CorrectResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /suggest:
+    post:
+      operationId: suggest
+      summary: Get text suggestions
+      description: >-
+        Returns style and grammar improvement suggestions for the provided text.
+      tags:
+        - Grammar
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BaseRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BaseRequest'
+      responses:
+        '200':
+          description: Text suggestions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GrammarResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /readability:
+    post:
+      operationId: checkReadability
+      summary: Check readability
+      description: >-
+        Calculates readability metrics using multiple algorithms including
+        Flesch-Kincaid, Gunning Fog, Coleman-Liau, and SMOG, plus emotion
+        analysis and word counts.
+      tags:
+        - Readability
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BaseRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BaseRequest'
+      responses:
+        '200':
+          description: Readability analysis result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReadabilityResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /analyze:
+    post:
+      operationId: analyzeText
+      summary: Analyze text
+      description: >-
+        Combines grammar checking with readability metrics and text statistics in
+        a single request.
+      tags:
+        - Readability
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CheckRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckRequest'
+      responses:
+        '200':
+          description: Combined text analysis result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyzeResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /detect:
+    post:
+      operationId: detectLanguage
+      summary: Detect language
+      description: >-
+        Determines the language and dialect of the provided text with
+        probability scores for multiple language candidates.
+      tags:
+        - Language
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DetectRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DetectRequest'
+      responses:
+        '200':
+          description: Language detection result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DetectResponse'
+              example:
+                status: true
+                response:
+                  language: en-US
+                  multiLanguages:
+                    - language: en-US
+                      score: 0.95
+                    - language: en-GB
+                      score: 0.05
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /summarize:
+    post:
+      operationId: summarize
+      summary: Summarize text
+      description: >-
+        Extracts key sentences, highlights important passages, and identifies
+        ranked keywords from longer texts.
+      tags:
+        - Summarization
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BaseRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BaseRequest'
+      responses:
+        '200':
+          description: Text summarization result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SummarizeResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /paraphrase:
+    post:
+      operationId: paraphrase
+      summary: Paraphrase text
+      description: >-
+        Returns a paraphrased version of the provided text. Supports creativity
+        level configuration.
+      tags:
+        - Grammar
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TransformRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransformRequest'
+      responses:
+        '200':
+          description: Paraphrased text
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransformResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /translate:
+    post:
+      operationId: translate
+      summary: Translate text
+      description: Translates the provided text to a specified target language.
+      tags:
+        - Grammar
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TranslateRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TranslateRequest'
+      responses:
+        '200':
+          description: Translated text
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransformResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /split:
+    post:
+      operationId: splitSentences
+      summary: Split text into sentences
+      description: Splits the provided text into individual sentences.
+      tags:
+        - Grammar
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BaseRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BaseRequest'
+      responses:
+        '200':
+          description: Split sentences result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SplitResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /account/resourcequota:
+    get:
+      operationId: getAccountResourceQuota
+      summary: Get account resource quota
+      description: Returns the current API quota limits for the authenticated account.
+      tags:
+        - Account
+      responses:
+        '200':
+          description: Account resource quota
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuotaResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /account/usage:
+    get:
+      operationId: getAccountUsage
+      summary: Get account usage statistics
+      description: Returns API usage statistics for the authenticated account within a date range.
+      tags:
+        - Account
+      parameters:
+        - name: period_start
+          in: query
+          description: Start of the usage period (Unix timestamp or ISO date)
+          schema:
+            type: string
+        - name: period_end
+          in: query
+          description: End of the usage period (Unix timestamp or ISO date)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Account usage statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsageResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /custom/createdictionary:
+    post:
+      operationId: createDictionary
+      summary: Create custom dictionary
+      description: Creates a new custom dictionary for storing exceptions and whitelisted terms.
+      tags:
+        - Dictionaries
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DictionaryRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DictionaryRequest'
+      responses:
+        '200':
+          description: Created dictionary details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DictionaryResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /custom/updatedictionary:
+    post:
+      operationId: updateDictionary
+      summary: Update custom dictionary
+      description: Updates the title or properties of an existing custom dictionary.
+      tags:
+        - Dictionaries
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DictionaryRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DictionaryRequest'
+      responses:
+        '200':
+          description: Updated dictionary details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DictionaryResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /custom/listdictionaries:
+    get:
+      operationId: listDictionaries
+      summary: List custom dictionaries
+      description: Returns a paginated list of all custom dictionaries for the account.
+      tags:
+        - Dictionaries
+      parameters:
+        - name: limit
+          in: query
+          required: true
+          description: Maximum number of dictionaries to return
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+        - name: offset
+          in: query
+          description: Number of dictionaries to skip (for pagination)
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+      responses:
+        '200':
+          description: List of dictionaries
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DictionaryListResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /custom/deletedictionary:
+    post:
+      operationId: deleteDictionary
+      summary: Delete custom dictionary
+      description: Permanently deletes a custom dictionary and all its exceptions.
+      tags:
+        - Dictionaries
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - id
+              properties:
+                id:
+                  type: string
+                  description: Custom dictionary identifier
+          application/json:
+            schema:
+              type: object
+              required:
+                - id
+              properties:
+                id:
+                  type: string
+                  description: Custom dictionary identifier
+      responses:
+        '200':
+          description: Deletion confirmation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /custom/addexception:
+    post:
+      operationId: addException
+      summary: Add dictionary exception
+      description: Adds a word or phrase exception to a custom dictionary.
+      tags:
+        - Exceptions
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ExceptionRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExceptionRequest'
+      responses:
+        '200':
+          description: Created exception details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /custom/listexceptions:
+    get:
+      operationId: listExceptions
+      summary: List dictionary exceptions
+      description: Returns a paginated list of exceptions for a custom dictionary.
+      tags:
+        - Exceptions
+      parameters:
+        - name: limit
+          in: query
+          required: true
+          description: Maximum number of exceptions to return
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+        - name: offset
+          in: query
+          description: Number of exceptions to skip (for pagination)
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+        - name: dictionary_id
+          in: query
+          description: Filter exceptions by dictionary ID
+          schema:
+            type: string
+        - name: text
+          in: query
+          description: Filter exceptions by text content
+          schema:
+            type: string
+        - name: type
+          in: query
+          description: Filter exceptions by type (1=word, 2=phrase)
+          schema:
+            type: integer
+            enum: [1, 2]
+        - name: lang
+          in: query
+          description: Filter exceptions by language code
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of exceptions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExceptionListResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /custom/deleteexception:
+    post:
+      operationId: deleteException
+      summary: Delete dictionary exception
+      description: Removes an exception from a custom dictionary.
+      tags:
+        - Exceptions
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - id
+              properties:
+                id:
+                  type: string
+                  description: Exception identifier
+                dictionary_id:
+                  type: string
+                  description: Dictionary identifier containing the exception
+          application/json:
+            schema:
+              type: object
+              required:
+                - id
+              properties:
+                id:
+                  type: string
+                  description: Exception identifier
+                dictionary_id:
+                  type: string
+                  description: Dictionary identifier containing the exception
+      responses:
+        '200':
+          description: Deletion confirmation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+components:
+  securitySchemes:
+    apiKeyQuery:
+      type: apiKey
+      in: query
+      name: key
+      description: API key passed as a query parameter
+    apiKeyHeader:
+      type: http
+      scheme: basic
+      description: API key passed as HTTP Basic Authorization header value
+  schemas:
+    BaseRequest:
+      type: object
+      required:
+        - text
+      properties:
+        text:
+          type: string
+          description: UTF-8 encoded text to analyze
+        language:
+          type: string
+          description: Language code (BCP 47 format)
+          default: en-US
+          example: en-US
+          enum:
+            - en-US
+            - en-GB
+            - en-ZA
+            - en-AU
+            - en-NZ
+            - fr-FR
+            - de-DE
+            - de-AT
+            - de-CH
+            - pt-PT
+            - pt-BR
+            - it-IT
+            - ar-AR
+            - ru-RU
+            - es-ES
+            - ja-JP
+            - zh-CN
+            - el-GR
+        key:
+          type: string
+          description: API authentication key (if not provided via header or query param)
+        ai:
+          type: boolean
+          description: Enable AI-enhanced analysis
+          default: false
+        whitelist:
+          type: array
+          items:
+            type: string
+          description: Words or phrases to exclude from error detection
+        dictionary_id:
+          type: string
+          description: Custom dictionary identifier to use for exception lookup
+    CheckRequest:
+      allOf:
+        - $ref: '#/components/schemas/BaseRequest'
+        - type: object
+          properties:
+            rules:
+              type: array
+              items:
+                type: string
+              description: Specific grammar rules to apply or exclude
+    DetectRequest:
+      type: object
+      required:
+        - text
+      properties:
+        text:
+          type: string
+          description: UTF-8 encoded text for language detection
+        key:
+          type: string
+          description: API authentication key
+    TransformRequest:
+      allOf:
+        - $ref: '#/components/schemas/CheckRequest'
+        - type: object
+          properties:
+            creativity:
+              type: number
+              description: Creativity level for paraphrasing (0.0 to 1.0)
+              minimum: 0
+              maximum: 1
+    TranslateRequest:
+      allOf:
+        - $ref: '#/components/schemas/TransformRequest'
+        - type: object
+          required:
+            - target_language
+          properties:
+            target_language:
+              type: string
+              description: Target language code for translation
+              example: fr-FR
+    DictionaryRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Custom dictionary identifier
+        title:
+          type: string
+          description: Human-readable dictionary title
+    ExceptionRequest:
+      type: object
+      required:
+        - text
+        - type
+        - lang
+      properties:
+        text:
+          type: string
+          description: Word or phrase to add as exception
+        type:
+          type: integer
+          description: Exception type (1=word, 2=phrase)
+          enum: [1, 2]
+        lang:
+          type: string
+          description: Language code for the exception
+        dictionary_id:
+          type: string
+          description: Dictionary to add the exception to
+        description:
+          type: string
+          description: Optional description of the exception
+        suggestions:
+          type: array
+          items:
+            type: string
+          description: Alternative suggestions to offer instead of this exception
+    GrammarError:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique error identifier
+        offset:
+          type: integer
+          description: Character offset of the error in the original text
+        length:
+          type: integer
+          description: Length of the error span in characters
+        bad:
+          type: string
+          description: The erroneous text
+        better:
+          type: array
+          items:
+            type: string
+          description: Suggested corrections
+        type:
+          type: string
+          description: Error type classification
+          enum:
+            - grammar
+            - spelling
+            - punctuation
+            - style
+        description:
+          type: string
+          description: Human-readable error description
+    GrammarResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+          description: Whether the request was successful
+        response:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                $ref: '#/components/schemas/GrammarError'
+    CorrectResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        response:
+          type: object
+          properties:
+            corrected:
+              type: string
+              description: The auto-corrected text
+    ReadabilityResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        response:
+          type: object
+          properties:
+            stats:
+              type: object
+              description: Text statistics
+              properties:
+                fleschKincaid:
+                  type: object
+                  properties:
+                    readingEase:
+                      type: number
+                    grade:
+                      type: number
+                gunningFog:
+                  type: number
+                colemanLiau:
+                  type: number
+                smog:
+                  type: number
+                wordCount:
+                  type: integer
+                sentenceCount:
+                  type: integer
+                characterCount:
+                  type: integer
+            emotion:
+              type: object
+              description: Emotion analysis results
+    AnalyzeResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        response:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                $ref: '#/components/schemas/GrammarError'
+            stats:
+              type: object
+              description: Text statistics and readability metrics
+    DetectResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        response:
+          type: object
+          properties:
+            language:
+              type: string
+              description: Most likely language code detected
+            multiLanguages:
+              type: array
+              items:
+                type: object
+                properties:
+                  language:
+                    type: string
+                  score:
+                    type: number
+                    description: Probability score (0.0 to 1.0)
+    SummarizeResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        response:
+          type: object
+          properties:
+            keywords:
+              type: array
+              items:
+                type: object
+                properties:
+                  key:
+                    type: string
+                  count:
+                    type: integer
+                  score:
+                    type: number
+            highlight:
+              type: array
+              items:
+                type: string
+              description: Key highlighted sentences
+            sentences:
+              type: array
+              items:
+                type: string
+    TransformResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        response:
+          type: object
+          properties:
+            result:
+              type: string
+              description: Transformed text output
+    SplitResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        response:
+          type: object
+          properties:
+            sentences:
+              type: array
+              items:
+                type: string
+    QuotaResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        response:
+          type: object
+          properties:
+            limit:
+              type: integer
+              description: Total request limit
+            used:
+              type: integer
+              description: Requests used
+            remaining:
+              type: integer
+              description: Remaining requests
+    UsageResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        response:
+          type: array
+          items:
+            type: object
+            properties:
+              date:
+                type: string
+                format: date
+              requests:
+                type: integer
+    DictionaryResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        response:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Dictionary identifier
+            title:
+              type: string
+              description: Dictionary title
+    DictionaryListResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        response:
+          type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/DictionaryResponse/properties/response'
+            total:
+              type: integer
+    ExceptionResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        response:
+          type: object
+          properties:
+            id:
+              type: string
+            text:
+              type: string
+            type:
+              type: integer
+            lang:
+              type: string
+            dictionary_id:
+              type: string
+    ExceptionListResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        response:
+          type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/ExceptionResponse/properties/response'
+            total:
+              type: integer
+    SuccessResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+          example: true
+        response:
+          type: object
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+          example: false
+        error_code:
+          type: integer
+          description: Error code
+          enum: [500, 501, 600, 606, 607]
+        description:
+          type: string
+          description: Human-readable error description
+  responses:
+    ErrorResponse:
+      description: API error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            invalidKey:
+              summary: Invalid API key
+              value:
+                status: false
+                error_code: 600
+                description: Invalid key
+            rateLimitExceeded:
+              summary: Rate limit exceeded
+              value:
+                status: false
+                error_code: 607
+                description: Request limit exceeded

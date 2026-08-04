@@ -1,0 +1,26 @@
+{
+  "provider": "textgears",
+  "sources": [
+    "textgears-account-api-openapi.yml",
+    "textgears-dictionaries-api-openapi.yml",
+    "textgears-exceptions-api-openapi.yml",
+    "textgears-grammar-api-openapi.yml",
+    "textgears-language-api-openapi.yml",
+    "textgears-readability-api-openapi.yml",
+    "textgears-summarization-api-openapi.yml"
+  ],
+  "outputs": [
+    "textgears-account-api-openapi.yml",
+    "textgears-dictionaries-api-openapi.yml",
+    "textgears-exceptions-api-openapi.yml",
+    "textgears-grammar-api-openapi.yml",
+    "textgears-language-api-openapi.yml",
+    "textgears-readability-api-openapi.yml",
+    "textgears-summarization-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
