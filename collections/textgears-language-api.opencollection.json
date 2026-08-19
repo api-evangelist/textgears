@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TextGears Account Language API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "key",
+      "value": "{{key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Language",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Detect language",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.textgears.com/detect",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Determines the language and dialect of the provided text with probability scores for multiple language candidates."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

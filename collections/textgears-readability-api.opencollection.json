@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TextGears Account Readability API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "key",
+      "value": "{{key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Readability",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Check readability",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.textgears.com/readability",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Calculates readability metrics using multiple algorithms including Flesch-Kincaid, Gunning Fog, Coleman-Liau, and SMOG, plus emotion analysis and word counts."
+        },
+        {
+          "info": {
+            "name": "Analyze text",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.textgears.com/analyze",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Combines grammar checking with readability metrics and text statistics in a single request."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,229 @@
+{
+  "item": [
+    {
+      "id": "0ac916e8-c96b-4be9-a5ca-94ec00b65702",
+      "name": "Language",
+      "description": {
+        "content": "Language detection",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b0c435f6-7283-4f3e-bcac-b9bebfeaeed2",
+          "name": "Detect language",
+          "request": {
+            "name": "Detect language",
+            "description": {
+              "content": "Determines the language and dialect of the provided text with probability scores for multiple language candidates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "detect"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "text",
+                  "value": "<string>",
+                  "description": "(Required) UTF-8 encoded text for language detection"
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "API authentication key"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "be0ef890-6c43-481e-a19b-88b02bac53b0",
+              "name": "Language detection result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "detect"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UTF-8 encoded text for language detection",
+                        "type": "text/plain"
+                      },
+                      "key": "text",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "API authentication key",
+                        "type": "text/plain"
+                      },
+                      "key": "key",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": true,\n  \"response\": {\n    \"language\": \"en-US\",\n    \"multiLanguages\": [\n      {\n        \"language\": \"en-US\",\n        \"score\": 0.95\n      },\n      {\n        \"language\": \"en-GB\",\n        \"score\": 0.05\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "322ba8cf-b44b-401e-ac65-3897e1ebeab4",
+              "name": "API error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "detect"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UTF-8 encoded text for language detection",
+                        "type": "text/plain"
+                      },
+                      "key": "text",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "API authentication key",
+                        "type": "text/plain"
+                      },
+                      "key": "key",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": false,\n  \"error_code\": 600,\n  \"description\": \"Invalid key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.textgears.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3fbc47ba-bb93-43e2-81a0-357aa0b27ade",
+    "name": "TextGears Account Language API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "TextGears is a grammar checking and text analysis REST API providing spelling corrections, grammar error detection, readability scoring, language detection, text summarization, and custom dictionary management across 11 languages. The service processes over 10.8 million API requests daily with distributed infrastructure across Estonia, Singapore, and the United States.",
+      "type": "text/plain"
+    }
+  }
+}

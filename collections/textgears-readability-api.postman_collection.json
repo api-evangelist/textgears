@@ -1,0 +1,616 @@
+{
+  "item": [
+    {
+      "id": "327991ec-f0dd-4d4a-91c5-0de890cc8e4a",
+      "name": "Readability",
+      "description": {
+        "content": "Text readability scoring and analysis",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8e561381-9b38-421d-9d9c-a84892b5db78",
+          "name": "Check readability",
+          "request": {
+            "name": "Check readability",
+            "description": {
+              "content": "Calculates readability metrics using multiple algorithms including Flesch-Kincaid, Gunning Fog, Coleman-Liau, and SMOG, plus emotion analysis and word counts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "readability"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "text",
+                  "value": "<string>",
+                  "description": "(Required) UTF-8 encoded text to analyze"
+                },
+                {
+                  "disabled": false,
+                  "key": "language",
+                  "value": "en-US",
+                  "description": "Language code (BCP 47 format)"
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "API authentication key (if not provided via header or query param)"
+                },
+                {
+                  "disabled": false,
+                  "key": "ai",
+                  "value": "false",
+                  "description": "Enable AI-enhanced analysis"
+                },
+                {
+                  "disabled": false,
+                  "key": "whitelist",
+                  "value": "<string>",
+                  "description": "Words or phrases to exclude from error detection"
+                },
+                {
+                  "disabled": false,
+                  "key": "whitelist",
+                  "value": "<string>",
+                  "description": "Words or phrases to exclude from error detection"
+                },
+                {
+                  "disabled": false,
+                  "key": "dictionary_id",
+                  "value": "<string>",
+                  "description": "Custom dictionary identifier to use for exception lookup"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "35b322c6-841d-4040-8d08-ad84d4e6db66",
+              "name": "Readability analysis result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "readability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UTF-8 encoded text to analyze",
+                        "type": "text/plain"
+                      },
+                      "key": "text",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Language code (BCP 47 format)",
+                        "type": "text/plain"
+                      },
+                      "key": "language",
+                      "value": "en-US"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "API authentication key (if not provided via header or query param)",
+                        "type": "text/plain"
+                      },
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Enable AI-enhanced analysis",
+                        "type": "text/plain"
+                      },
+                      "key": "ai",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Words or phrases to exclude from error detection",
+                        "type": "text/plain"
+                      },
+                      "key": "whitelist",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Words or phrases to exclude from error detection",
+                        "type": "text/plain"
+                      },
+                      "key": "whitelist",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Custom dictionary identifier to use for exception lookup",
+                        "type": "text/plain"
+                      },
+                      "key": "dictionary_id",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": false,\n  \"response\": {\n    \"stats\": {\n      \"fleschKincaid\": {\n        \"readingEase\": 4768.9230765913835,\n        \"grade\": 8862.397233243386\n      },\n      \"gunningFog\": 3924.814902020931,\n      \"colemanLiau\": 1622.765048638818,\n      \"smog\": 8948.957661838194,\n      \"wordCount\": 3473,\n      \"sentenceCount\": 2140,\n      \"characterCount\": 9925\n    },\n    \"emotion\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fac1734b-bad6-418e-9a50-50c34a5935c7",
+              "name": "API error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "readability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UTF-8 encoded text to analyze",
+                        "type": "text/plain"
+                      },
+                      "key": "text",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Language code (BCP 47 format)",
+                        "type": "text/plain"
+                      },
+                      "key": "language",
+                      "value": "en-US"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "API authentication key (if not provided via header or query param)",
+                        "type": "text/plain"
+                      },
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Enable AI-enhanced analysis",
+                        "type": "text/plain"
+                      },
+                      "key": "ai",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Words or phrases to exclude from error detection",
+                        "type": "text/plain"
+                      },
+                      "key": "whitelist",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Words or phrases to exclude from error detection",
+                        "type": "text/plain"
+                      },
+                      "key": "whitelist",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Custom dictionary identifier to use for exception lookup",
+                        "type": "text/plain"
+                      },
+                      "key": "dictionary_id",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": false,\n  \"error_code\": 600,\n  \"description\": \"Invalid key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "815cbb9e-3352-4428-8947-ca309f5611e9",
+          "name": "Analyze text",
+          "request": {
+            "name": "Analyze text",
+            "description": {
+              "content": "Combines grammar checking with readability metrics and text statistics in a single request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "analyze"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "text",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "language",
+                  "value": "en-US"
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ai",
+                  "value": "false"
+                },
+                {
+                  "disabled": false,
+                  "key": "whitelist",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "whitelist",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "dictionary_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "rules",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "rules",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4758f862-8bfe-4d9b-8f46-8c40e5fd869d",
+              "name": "Combined text analysis result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analyze"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "text",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "language",
+                      "value": "en-US"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ai",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "whitelist",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "whitelist",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "dictionary_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "rules",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "rules",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": true,\n  \"response\": {\n    \"errors\": [\n      {\n        \"id\": \"string\",\n        \"offset\": 6042,\n        \"length\": 6360,\n        \"bad\": \"string\",\n        \"better\": [\n          \"string\",\n          \"string\"\n        ],\n        \"type\": \"style\",\n        \"description\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"offset\": 1397,\n        \"length\": 976,\n        \"bad\": \"string\",\n        \"better\": [\n          \"string\",\n          \"string\"\n        ],\n        \"type\": \"style\",\n        \"description\": \"string\"\n      }\n    ],\n    \"stats\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ec2dcf9a-4360-43cb-8729-cd901829136c",
+              "name": "API error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analyze"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "text",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "language",
+                      "value": "en-US"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ai",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "whitelist",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "whitelist",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "dictionary_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "rules",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "rules",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": false,\n  \"error_code\": 600,\n  \"description\": \"Invalid key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.textgears.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4950a2ec-2462-44fa-b1b1-81aa5005c4be",
+    "name": "TextGears Account Readability API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "TextGears is a grammar checking and text analysis REST API providing spelling corrections, grammar error detection, readability scoring, language detection, text summarization, and custom dictionary management across 11 languages. The service processes over 10.8 million API requests daily with distributed infrastructure across Estonia, Singapore, and the United States.",
+      "type": "text/plain"
+    }
+  }
+}

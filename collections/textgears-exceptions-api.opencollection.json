@@ -1,0 +1,105 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TextGears Account Exceptions API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "key",
+      "value": "{{key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Exceptions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add dictionary exception",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.textgears.com/custom/addexception",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a word or phrase exception to a custom dictionary."
+        },
+        {
+          "info": {
+            "name": "List dictionary exceptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.textgears.com/custom/listexceptions",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of exceptions to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of exceptions to skip (for pagination)"
+              },
+              {
+                "name": "dictionary_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter exceptions by dictionary ID"
+              },
+              {
+                "name": "text",
+                "value": "",
+                "type": "query",
+                "description": "Filter exceptions by text content"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter exceptions by type (1=word, 2=phrase)"
+              },
+              {
+                "name": "lang",
+                "value": "",
+                "type": "query",
+                "description": "Filter exceptions by language code"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of exceptions for a custom dictionary."
+        },
+        {
+          "info": {
+            "name": "Delete dictionary exception",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.textgears.com/custom/deleteexception",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Removes an exception from a custom dictionary."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

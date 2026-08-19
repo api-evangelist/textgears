@@ -1,0 +1,131 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TextGears Account Grammar API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "key",
+      "value": "{{key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Grammar",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Check grammar",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.textgears.com/grammar",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Identifies spelling, grammar, style, and punctuation errors in the provided text with suggested corrections. Supports 11 languages and multiple English dialects."
+        },
+        {
+          "info": {
+            "name": "Check spelling",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.textgears.com/spelling",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Focuses on widespread spelling mistakes only, offering a lighter-weight alternative to full grammar analysis."
+        },
+        {
+          "info": {
+            "name": "Auto-correct text",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.textgears.com/correct",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a corrected version of the input text with grammar and spelling errors automatically fixed."
+        },
+        {
+          "info": {
+            "name": "Get text suggestions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.textgears.com/suggest",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns style and grammar improvement suggestions for the provided text."
+        },
+        {
+          "info": {
+            "name": "Paraphrase text",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.textgears.com/paraphrase",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a paraphrased version of the provided text. Supports creativity level configuration."
+        },
+        {
+          "info": {
+            "name": "Translate text",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.textgears.com/translate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Translates the provided text to a specified target language."
+        },
+        {
+          "info": {
+            "name": "Split text into sentences",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.textgears.com/split",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Splits the provided text into individual sentences."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

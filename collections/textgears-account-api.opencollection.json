@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TextGears Account API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "key",
+      "value": "{{key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Account",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get account resource quota",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.textgears.com/account/resourcequota"
+          },
+          "docs": "Returns the current API quota limits for the authenticated account."
+        },
+        {
+          "info": {
+            "name": "Get account usage statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.textgears.com/account/usage",
+            "params": [
+              {
+                "name": "period_start",
+                "value": "",
+                "type": "query",
+                "description": "Start of the usage period (Unix timestamp or ISO date)"
+              },
+              {
+                "name": "period_end",
+                "value": "",
+                "type": "query",
+                "description": "End of the usage period (Unix timestamp or ISO date)"
+              }
+            ]
+          },
+          "docs": "Returns API usage statistics for the authenticated account within a date range."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

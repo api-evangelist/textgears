@@ -1,0 +1,738 @@
+{
+  "item": [
+    {
+      "id": "2846a2fb-ce59-4bcf-9692-de20e15b0267",
+      "name": "Exceptions",
+      "description": {
+        "content": "Custom exception (whitelist) management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c218c087-0da5-4a8d-b6d8-731b3e287eb0",
+          "name": "Add dictionary exception",
+          "request": {
+            "name": "Add dictionary exception",
+            "description": {
+              "content": "Adds a word or phrase exception to a custom dictionary.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom",
+                "addexception"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "text",
+                  "value": "<string>",
+                  "description": "(Required) Word or phrase to add as exception"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<integer>",
+                  "description": "(Required) Exception type (1=word, 2=phrase)"
+                },
+                {
+                  "disabled": false,
+                  "key": "lang",
+                  "value": "<string>",
+                  "description": "(Required) Language code for the exception"
+                },
+                {
+                  "disabled": false,
+                  "key": "dictionary_id",
+                  "value": "<string>",
+                  "description": "Dictionary to add the exception to"
+                },
+                {
+                  "disabled": false,
+                  "key": "description",
+                  "value": "<string>",
+                  "description": "Optional description of the exception"
+                },
+                {
+                  "disabled": false,
+                  "key": "suggestions",
+                  "value": "<string>",
+                  "description": "Alternative suggestions to offer instead of this exception"
+                },
+                {
+                  "disabled": false,
+                  "key": "suggestions",
+                  "value": "<string>",
+                  "description": "Alternative suggestions to offer instead of this exception"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5bca316b-1294-4877-bb2f-1f7c1247fd8f",
+              "name": "Created exception details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "addexception"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Word or phrase to add as exception",
+                        "type": "text/plain"
+                      },
+                      "key": "text",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Exception type (1=word, 2=phrase)",
+                        "type": "text/plain"
+                      },
+                      "key": "type",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Language code for the exception",
+                        "type": "text/plain"
+                      },
+                      "key": "lang",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Dictionary to add the exception to",
+                        "type": "text/plain"
+                      },
+                      "key": "dictionary_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Optional description of the exception",
+                        "type": "text/plain"
+                      },
+                      "key": "description",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Alternative suggestions to offer instead of this exception",
+                        "type": "text/plain"
+                      },
+                      "key": "suggestions",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Alternative suggestions to offer instead of this exception",
+                        "type": "text/plain"
+                      },
+                      "key": "suggestions",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": true,\n  \"response\": {\n    \"id\": \"string\",\n    \"text\": \"string\",\n    \"type\": 1305,\n    \"lang\": \"string\",\n    \"dictionary_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a08c8c1-a953-4d49-82c7-28905563b7bd",
+              "name": "API error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "addexception"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Word or phrase to add as exception",
+                        "type": "text/plain"
+                      },
+                      "key": "text",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Exception type (1=word, 2=phrase)",
+                        "type": "text/plain"
+                      },
+                      "key": "type",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Language code for the exception",
+                        "type": "text/plain"
+                      },
+                      "key": "lang",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Dictionary to add the exception to",
+                        "type": "text/plain"
+                      },
+                      "key": "dictionary_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Optional description of the exception",
+                        "type": "text/plain"
+                      },
+                      "key": "description",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Alternative suggestions to offer instead of this exception",
+                        "type": "text/plain"
+                      },
+                      "key": "suggestions",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Alternative suggestions to offer instead of this exception",
+                        "type": "text/plain"
+                      },
+                      "key": "suggestions",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": false,\n  \"error_code\": 600,\n  \"description\": \"Invalid key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ba900e0b-41fb-4a0c-9d86-119563de8d02",
+          "name": "List dictionary exceptions",
+          "request": {
+            "name": "List dictionary exceptions",
+            "description": {
+              "content": "Returns a paginated list of exceptions for a custom dictionary.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom",
+                "listexceptions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "(Required) Maximum number of exceptions to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of exceptions to skip (for pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "dictionary_id",
+                  "value": "<string>",
+                  "description": "Filter exceptions by dictionary ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "text",
+                  "value": "<string>",
+                  "description": "Filter exceptions by text content"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<integer>",
+                  "description": "Filter exceptions by type (1=word, 2=phrase)"
+                },
+                {
+                  "disabled": false,
+                  "key": "lang",
+                  "value": "<string>",
+                  "description": "Filter exceptions by language code"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ed522cee-7cb1-4e58-a808-226907bfe563",
+              "name": "List of exceptions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "listexceptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "dictionary_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "text",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "lang",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": false,\n  \"response\": {\n    \"items\": [\n      {\n        \"id\": \"string\",\n        \"text\": \"string\",\n        \"type\": 8291,\n        \"lang\": \"string\",\n        \"dictionary_id\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"text\": \"string\",\n        \"type\": 1431,\n        \"lang\": \"string\",\n        \"dictionary_id\": \"string\"\n      }\n    ],\n    \"total\": 28\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f006e686-edfd-4e23-b295-758387e4f2e5",
+              "name": "API error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "listexceptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "dictionary_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "text",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "lang",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": false,\n  \"error_code\": 600,\n  \"description\": \"Invalid key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7be665ab-3c84-408e-a21c-4f3798f033ff",
+          "name": "Delete dictionary exception",
+          "request": {
+            "name": "Delete dictionary exception",
+            "description": {
+              "content": "Removes an exception from a custom dictionary.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom",
+                "deleteexception"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "(Required) Exception identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "dictionary_id",
+                  "value": "<string>",
+                  "description": "Dictionary identifier containing the exception"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8de78c92-dbce-49bf-b354-3d9e260ebf09",
+              "name": "Deletion confirmation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "deleteexception"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Exception identifier",
+                        "type": "text/plain"
+                      },
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Dictionary identifier containing the exception",
+                        "type": "text/plain"
+                      },
+                      "key": "dictionary_id",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": true,\n  \"response\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8327ccf8-5b58-49d4-a90a-66383311391c",
+              "name": "API error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "deleteexception"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Exception identifier",
+                        "type": "text/plain"
+                      },
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Dictionary identifier containing the exception",
+                        "type": "text/plain"
+                      },
+                      "key": "dictionary_id",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": false,\n  \"error_code\": 600,\n  \"description\": \"Invalid key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.textgears.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "24cc655b-12f3-42f1-b4e2-3cafedab9145",
+    "name": "TextGears Account Exceptions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "TextGears is a grammar checking and text analysis REST API providing spelling corrections, grammar error detection, readability scoring, language detection, text summarization, and custom dictionary management across 11 languages. The service processes over 10.8 million API requests daily with distributed infrastructure across Estonia, Singapore, and the United States.",
+      "type": "text/plain"
+    }
+  }
+}

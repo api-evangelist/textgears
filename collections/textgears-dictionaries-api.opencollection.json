@@ -1,0 +1,96 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TextGears Account Dictionaries API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "key",
+      "value": "{{key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Dictionaries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create custom dictionary",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.textgears.com/custom/createdictionary",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new custom dictionary for storing exceptions and whitelisted terms."
+        },
+        {
+          "info": {
+            "name": "Update custom dictionary",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.textgears.com/custom/updatedictionary",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the title or properties of an existing custom dictionary."
+        },
+        {
+          "info": {
+            "name": "List custom dictionaries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.textgears.com/custom/listdictionaries",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of dictionaries to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of dictionaries to skip (for pagination)"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of all custom dictionaries for the account."
+        },
+        {
+          "info": {
+            "name": "Delete custom dictionary",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.textgears.com/custom/deletedictionary",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Permanently deletes a custom dictionary and all its exceptions."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

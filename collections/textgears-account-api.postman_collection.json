@@ -1,0 +1,314 @@
+{
+  "item": [
+    {
+      "id": "13d5eea8-86c8-46ba-b394-8d09790542a4",
+      "name": "Account",
+      "description": {
+        "content": "Account usage and quota management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2b02b1bb-bc25-4c03-8e6f-c29ac4964d8c",
+          "name": "Get account resource quota",
+          "request": {
+            "name": "Get account resource quota",
+            "description": {
+              "content": "Returns the current API quota limits for the authenticated account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "account",
+                "resourcequota"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a7cab634-4a84-4cef-b7eb-ac7c7c5ec921",
+              "name": "Account resource quota",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "resourcequota"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": false,\n  \"response\": {\n    \"limit\": 6871,\n    \"used\": 8128,\n    \"remaining\": 6203\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a9c3dc0-be5d-4072-b182-810360a512aa",
+              "name": "API error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "resourcequota"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": false,\n  \"error_code\": 600,\n  \"description\": \"Invalid key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1e088085-2a25-4617-90ff-d330864c5dbe",
+          "name": "Get account usage statistics",
+          "request": {
+            "name": "Get account usage statistics",
+            "description": {
+              "content": "Returns API usage statistics for the authenticated account within a date range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "account",
+                "usage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "period_start",
+                  "value": "<string>",
+                  "description": "Start of the usage period (Unix timestamp or ISO date)"
+                },
+                {
+                  "disabled": false,
+                  "key": "period_end",
+                  "value": "<string>",
+                  "description": "End of the usage period (Unix timestamp or ISO date)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "48fb98a3-ae65-40cb-8296-053c51ce0fb8",
+              "name": "Account usage statistics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "usage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "period_start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "period_end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": false,\n  \"response\": [\n    {\n      \"date\": \"1947-02-07\",\n      \"requests\": 8579\n    },\n    {\n      \"date\": \"1958-06-16\",\n      \"requests\": 5456\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "85847ee5-cea1-42fd-bdf1-f6037cf53eb7",
+              "name": "API error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "usage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "period_start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "period_end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": false,\n  \"error_code\": 600,\n  \"description\": \"Invalid key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.textgears.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5b01d936-cb70-4e2e-87f5-2de3df4e2535",
+    "name": "TextGears Account API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "TextGears is a grammar checking and text analysis REST API providing spelling corrections, grammar error detection, readability scoring, language detection, text summarization, and custom dictionary management across 11 languages. The service processes over 10.8 million API requests daily with distributed infrastructure across Estonia, Singapore, and the United States.",
+      "type": "text/plain"
+    }
+  }
+}
