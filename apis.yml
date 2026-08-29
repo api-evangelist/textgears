@@ -6,6 +6,18 @@ description: >-
   and text summarization across 11 languages. The service processes over 10.8
   million API requests daily and offers distributed infrastructure across
   Estonia, Singapore, and the United States for low-latency access.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
