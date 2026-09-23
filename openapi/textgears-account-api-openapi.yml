@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: TextGears Account API
   description: TextGears is a grammar checking and text analysis REST API providing spelling corrections, grammar error detection, readability scoring, language detection, text summarization, and custom dictionary management across 11 languages. The service processes over 10.8 million API requests daily with distributed infrastructure across Estonia, Singapore, and the United States.
@@ -70,6 +70,21 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
 components:
   schemas:
+    UsageResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        response:
+          type: array
+          items:
+            type: object
+            properties:
+              date:
+                type: string
+                format: date
+              requests:
+                type: integer
     QuotaResponse:
       type: object
       properties:
@@ -87,21 +102,6 @@ components:
             remaining:
               type: integer
               description: Remaining requests
-    UsageResponse:
-      type: object
-      properties:
-        status:
-          type: boolean
-        response:
-          type: array
-          items:
-            type: object
-            properties:
-              date:
-                type: string
-                format: date
-              requests:
-                type: integer
     ErrorResponse:
       type: object
       properties:

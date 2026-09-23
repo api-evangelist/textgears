@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: TextGears Account Grammar API
+  title: TextGears Grammar API
   description: TextGears is a grammar checking and text analysis REST API providing spelling corrections, grammar error detection, readability scoring, language detection, text summarization, and custom dictionary management across 11 languages. The service processes over 10.8 million API requests daily with distributed infrastructure across Estonia, Singapore, and the United States.
   version: 1.0.0
   contact:
@@ -214,6 +214,39 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
 components:
   schemas:
+    TransformRequest:
+      allOf:
+      - $ref: '#/components/schemas/CheckRequest'
+      - type: object
+        properties:
+          creativity:
+            type: number
+            description: Creativity level for paraphrasing (0.0 to 1.0)
+            minimum: 0
+            maximum: 1
+    SplitResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        response:
+          type: object
+          properties:
+            sentences:
+              type: array
+              items:
+                type: string
+    CorrectResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        response:
+          type: object
+          properties:
+            corrected:
+              type: string
+              description: The auto-corrected text
     CheckRequest:
       allOf:
       - $ref: '#/components/schemas/BaseRequest'
@@ -235,40 +268,6 @@ components:
             result:
               type: string
               description: Transformed text output
-    TranslateRequest:
-      allOf:
-      - $ref: '#/components/schemas/TransformRequest'
-      - type: object
-        required:
-        - target_language
-        properties:
-          target_language:
-            type: string
-            description: Target language code for translation
-            example: fr-FR
-    CorrectResponse:
-      type: object
-      properties:
-        status:
-          type: boolean
-        response:
-          type: object
-          properties:
-            corrected:
-              type: string
-              description: The auto-corrected text
-    SplitResponse:
-      type: object
-      properties:
-        status:
-          type: boolean
-        response:
-          type: object
-          properties:
-            sentences:
-              type: array
-              items:
-                type: string
     GrammarError:
       type: object
       properties:
@@ -313,16 +312,6 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/GrammarError'
-    TransformRequest:
-      allOf:
-      - $ref: '#/components/schemas/CheckRequest'
-      - type: object
-        properties:
-          creativity:
-            type: number
-            description: Creativity level for paraphrasing (0.0 to 1.0)
-            minimum: 0
-            maximum: 1
     ErrorResponse:
       type: object
       properties:
@@ -341,6 +330,17 @@ components:
         description:
           type: string
           description: Human-readable error description
+    TranslateRequest:
+      allOf:
+      - $ref: '#/components/schemas/TransformRequest'
+      - type: object
+        required:
+        - target_language
+        properties:
+          target_language:
+            type: string
+            description: Target language code for translation
+            example: fr-FR
     BaseRequest:
       type: object
       required:

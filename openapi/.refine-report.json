@@ -1,13 +1,7 @@
 {
   "provider": "textgears",
   "sources": [
-    "textgears-account-api-openapi.yml",
-    "textgears-dictionaries-api-openapi.yml",
-    "textgears-exceptions-api-openapi.yml",
-    "textgears-grammar-api-openapi.yml",
-    "textgears-language-api-openapi.yml",
-    "textgears-readability-api-openapi.yml",
-    "textgears-summarization-api-openapi.yml"
+    "_original/openapi.yml"
   ],
   "outputs": [
     "textgears-account-api-openapi.yml",
@@ -21,6 +15,18 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "textgears-account-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "textgears-dictionaries-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "textgears-exceptions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "textgears-grammar-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "textgears-language-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "textgears-readability-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "textgears-summarization-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
