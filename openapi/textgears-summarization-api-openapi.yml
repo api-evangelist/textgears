@@ -52,34 +52,6 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
 components:
   schemas:
-    SummarizeResponse:
-      type: object
-      properties:
-        status:
-          type: boolean
-        response:
-          type: object
-          properties:
-            keywords:
-              type: array
-              items:
-                type: object
-                properties:
-                  key:
-                    type: string
-                  count:
-                    type: integer
-                  score:
-                    type: number
-            highlight:
-              type: array
-              items:
-                type: string
-              description: Key highlighted sentences
-            sentences:
-              type: array
-              items:
-                type: string
     BaseRequest:
       type: object
       required:
@@ -145,6 +117,34 @@ components:
         description:
           type: string
           description: Human-readable error description
+    SummarizeResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        response:
+          type: object
+          properties:
+            keywords:
+              type: array
+              items:
+                type: object
+                properties:
+                  key:
+                    type: string
+                  count:
+                    type: integer
+                  score:
+                    type: number
+            highlight:
+              type: array
+              items:
+                type: string
+              description: Key highlighted sentences
+            sentences:
+              type: array
+              items:
+                type: string
   responses:
     ErrorResponse:
       description: API error

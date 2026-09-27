@@ -77,31 +77,24 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
 components:
   schemas:
-    CheckRequest:
-      allOf:
-      - $ref: '#/components/schemas/BaseRequest'
-      - type: object
-        properties:
-          rules:
-            type: array
-            items:
-              type: string
-            description: Specific grammar rules to apply or exclude
-    AnalyzeResponse:
+    ErrorResponse:
       type: object
       properties:
         status:
           type: boolean
-        response:
-          type: object
-          properties:
-            errors:
-              type: array
-              items:
-                $ref: '#/components/schemas/GrammarError'
-            stats:
-              type: object
-              description: Text statistics and readability metrics
+          example: false
+        error_code:
+          type: integer
+          description: Error code
+          enum:
+          - 500
+          - 501
+          - 600
+          - 606
+          - 607
+        description:
+          type: string
+          description: Human-readable error description
     GrammarError:
       type: object
       properties:
@@ -130,24 +123,6 @@ components:
           - spelling
           - punctuation
           - style
-        description:
-          type: string
-          description: Human-readable error description
-    ErrorResponse:
-      type: object
-      properties:
-        status:
-          type: boolean
-          example: false
-        error_code:
-          type: integer
-          description: Error code
-          enum:
-          - 500
-          - 501
-          - 600
-          - 606
-          - 607
         description:
           type: string
           description: Human-readable error description
@@ -232,6 +207,31 @@ components:
             emotion:
               type: object
               description: Emotion analysis results
+    CheckRequest:
+      allOf:
+      - $ref: '#/components/schemas/BaseRequest'
+      - type: object
+        properties:
+          rules:
+            type: array
+            items:
+              type: string
+            description: Specific grammar rules to apply or exclude
+    AnalyzeResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        response:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                $ref: '#/components/schemas/GrammarError'
+            stats:
+              type: object
+              description: Text statistics and readability metrics
   responses:
     ErrorResponse:
       description: API error

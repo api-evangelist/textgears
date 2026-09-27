@@ -146,37 +146,6 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
 components:
   schemas:
-    DictionaryRequest:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Custom dictionary identifier
-        title:
-          type: string
-          description: Human-readable dictionary title
-    SuccessResponse:
-      type: object
-      properties:
-        status:
-          type: boolean
-          example: true
-        response:
-          type: object
-    DictionaryResponse:
-      type: object
-      properties:
-        status:
-          type: boolean
-        response:
-          type: object
-          properties:
-            id:
-              type: string
-              description: Dictionary identifier
-            title:
-              type: string
-              description: Dictionary title
     ErrorResponse:
       type: object
       properties:
@@ -195,6 +164,37 @@ components:
         description:
           type: string
           description: Human-readable error description
+    DictionaryResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        response:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Dictionary identifier
+            title:
+              type: string
+              description: Dictionary title
+    SuccessResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+          example: true
+        response:
+          type: object
+    DictionaryRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Custom dictionary identifier
+        title:
+          type: string
+          description: Human-readable dictionary title
     DictionaryListResponse:
       type: object
       properties:

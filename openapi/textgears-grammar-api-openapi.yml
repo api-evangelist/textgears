@@ -214,60 +214,37 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
 components:
   schemas:
-    TransformRequest:
-      allOf:
-      - $ref: '#/components/schemas/CheckRequest'
-      - type: object
-        properties:
-          creativity:
-            type: number
-            description: Creativity level for paraphrasing (0.0 to 1.0)
-            minimum: 0
-            maximum: 1
-    SplitResponse:
+    ErrorResponse:
       type: object
       properties:
         status:
           type: boolean
+          example: false
+        error_code:
+          type: integer
+          description: Error code
+          enum:
+          - 500
+          - 501
+          - 600
+          - 606
+          - 607
+        description:
+          type: string
+          description: Human-readable error description
+    GrammarResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+          description: Whether the request was successful
         response:
           type: object
           properties:
-            sentences:
+            errors:
               type: array
               items:
-                type: string
-    CorrectResponse:
-      type: object
-      properties:
-        status:
-          type: boolean
-        response:
-          type: object
-          properties:
-            corrected:
-              type: string
-              description: The auto-corrected text
-    CheckRequest:
-      allOf:
-      - $ref: '#/components/schemas/BaseRequest'
-      - type: object
-        properties:
-          rules:
-            type: array
-            items:
-              type: string
-            description: Specific grammar rules to apply or exclude
-    TransformResponse:
-      type: object
-      properties:
-        status:
-          type: boolean
-        response:
-          type: object
-          properties:
-            result:
-              type: string
-              description: Transformed text output
+                $ref: '#/components/schemas/GrammarError'
     GrammarError:
       type: object
       properties:
@@ -299,48 +276,6 @@ components:
         description:
           type: string
           description: Human-readable error description
-    GrammarResponse:
-      type: object
-      properties:
-        status:
-          type: boolean
-          description: Whether the request was successful
-        response:
-          type: object
-          properties:
-            errors:
-              type: array
-              items:
-                $ref: '#/components/schemas/GrammarError'
-    ErrorResponse:
-      type: object
-      properties:
-        status:
-          type: boolean
-          example: false
-        error_code:
-          type: integer
-          description: Error code
-          enum:
-          - 500
-          - 501
-          - 600
-          - 606
-          - 607
-        description:
-          type: string
-          description: Human-readable error description
-    TranslateRequest:
-      allOf:
-      - $ref: '#/components/schemas/TransformRequest'
-      - type: object
-        required:
-        - target_language
-        properties:
-          target_language:
-            type: string
-            description: Target language code for translation
-            example: fr-FR
     BaseRequest:
       type: object
       required:
@@ -388,6 +323,71 @@ components:
         dictionary_id:
           type: string
           description: Custom dictionary identifier to use for exception lookup
+    TransformResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        response:
+          type: object
+          properties:
+            result:
+              type: string
+              description: Transformed text output
+    TransformRequest:
+      allOf:
+      - $ref: '#/components/schemas/CheckRequest'
+      - type: object
+        properties:
+          creativity:
+            type: number
+            description: Creativity level for paraphrasing (0.0 to 1.0)
+            minimum: 0
+            maximum: 1
+    CheckRequest:
+      allOf:
+      - $ref: '#/components/schemas/BaseRequest'
+      - type: object
+        properties:
+          rules:
+            type: array
+            items:
+              type: string
+            description: Specific grammar rules to apply or exclude
+    SplitResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        response:
+          type: object
+          properties:
+            sentences:
+              type: array
+              items:
+                type: string
+    CorrectResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        response:
+          type: object
+          properties:
+            corrected:
+              type: string
+              description: The auto-corrected text
+    TranslateRequest:
+      allOf:
+      - $ref: '#/components/schemas/TransformRequest'
+      - type: object
+        required:
+        - target_language
+        properties:
+          target_language:
+            type: string
+            description: Target language code for translation
+            example: fr-FR
   responses:
     ErrorResponse:
       description: API error

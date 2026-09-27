@@ -150,6 +150,24 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+          example: false
+        error_code:
+          type: integer
+          description: Error code
+          enum:
+          - 500
+          - 501
+          - 600
+          - 606
+          - 607
+        description:
+          type: string
+          description: Human-readable error description
     ExceptionResponse:
       type: object
       properties:
@@ -176,24 +194,6 @@ components:
           example: true
         response:
           type: object
-    ErrorResponse:
-      type: object
-      properties:
-        status:
-          type: boolean
-          example: false
-        error_code:
-          type: integer
-          description: Error code
-          enum:
-          - 500
-          - 501
-          - 600
-          - 606
-          - 607
-        description:
-          type: string
-          description: Human-readable error description
     ExceptionRequest:
       type: object
       required:
