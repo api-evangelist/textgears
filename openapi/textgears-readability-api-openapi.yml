@@ -77,55 +77,50 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
 components:
   schemas:
-    ErrorResponse:
+    CheckRequest:
+      allOf:
+      - $ref: '#/components/schemas/BaseRequest'
+      - type: object
+        properties:
+          rules:
+            type: array
+            items:
+              type: string
+            description: Specific grammar rules to apply or exclude
+    ReadabilityResponse:
       type: object
       properties:
         status:
           type: boolean
-          example: false
-        error_code:
-          type: integer
-          description: Error code
-          enum:
-          - 500
-          - 501
-          - 600
-          - 606
-          - 607
-        description:
-          type: string
-          description: Human-readable error description
-    GrammarError:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique error identifier
-        offset:
-          type: integer
-          description: Character offset of the error in the original text
-        length:
-          type: integer
-          description: Length of the error span in characters
-        bad:
-          type: string
-          description: The erroneous text
-        better:
-          type: array
-          items:
-            type: string
-          description: Suggested corrections
-        type:
-          type: string
-          description: Error type classification
-          enum:
-          - grammar
-          - spelling
-          - punctuation
-          - style
-        description:
-          type: string
-          description: Human-readable error description
+        response:
+          type: object
+          properties:
+            stats:
+              type: object
+              description: Text statistics
+              properties:
+                fleschKincaid:
+                  type: object
+                  properties:
+                    readingEase:
+                      type: number
+                    grade:
+                      type: number
+                gunningFog:
+                  type: number
+                colemanLiau:
+                  type: number
+                smog:
+                  type: number
+                wordCount:
+                  type: integer
+                sentenceCount:
+                  type: integer
+                characterCount:
+                  type: integer
+            emotion:
+              type: object
+              description: Emotion analysis results
     BaseRequest:
       type: object
       required:
@@ -173,50 +168,24 @@ components:
         dictionary_id:
           type: string
           description: Custom dictionary identifier to use for exception lookup
-    ReadabilityResponse:
+    ErrorResponse:
       type: object
       properties:
         status:
           type: boolean
-        response:
-          type: object
-          properties:
-            stats:
-              type: object
-              description: Text statistics
-              properties:
-                fleschKincaid:
-                  type: object
-                  properties:
-                    readingEase:
-                      type: number
-                    grade:
-                      type: number
-                gunningFog:
-                  type: number
-                colemanLiau:
-                  type: number
-                smog:
-                  type: number
-                wordCount:
-                  type: integer
-                sentenceCount:
-                  type: integer
-                characterCount:
-                  type: integer
-            emotion:
-              type: object
-              description: Emotion analysis results
-    CheckRequest:
-      allOf:
-      - $ref: '#/components/schemas/BaseRequest'
-      - type: object
-        properties:
-          rules:
-            type: array
-            items:
-              type: string
-            description: Specific grammar rules to apply or exclude
+          example: false
+        error_code:
+          type: integer
+          description: Error code
+          enum:
+          - 500
+          - 501
+          - 600
+          - 606
+          - 607
+        description:
+          type: string
+          description: Human-readable error description
     AnalyzeResponse:
       type: object
       properties:
@@ -232,6 +201,37 @@ components:
             stats:
               type: object
               description: Text statistics and readability metrics
+    GrammarError:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique error identifier
+        offset:
+          type: integer
+          description: Character offset of the error in the original text
+        length:
+          type: integer
+          description: Length of the error span in characters
+        bad:
+          type: string
+          description: The erroneous text
+        better:
+          type: array
+          items:
+            type: string
+          description: Suggested corrections
+        type:
+          type: string
+          description: Error type classification
+          enum:
+          - grammar
+          - spelling
+          - punctuation
+          - style
+        description:
+          type: string
+          description: Human-readable error description
   responses:
     ErrorResponse:
       description: API error

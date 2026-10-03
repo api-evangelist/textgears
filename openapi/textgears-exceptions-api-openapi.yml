@@ -150,24 +150,6 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        status:
-          type: boolean
-          example: false
-        error_code:
-          type: integer
-          description: Error code
-          enum:
-          - 500
-          - 501
-          - 600
-          - 606
-          - 607
-        description:
-          type: string
-          description: Human-readable error description
     ExceptionResponse:
       type: object
       properties:
@@ -186,14 +168,6 @@ components:
               type: string
             dictionary_id:
               type: string
-    SuccessResponse:
-      type: object
-      properties:
-        status:
-          type: boolean
-          example: true
-        response:
-          type: object
     ExceptionRequest:
       type: object
       required:
@@ -224,6 +198,24 @@ components:
           items:
             type: string
           description: Alternative suggestions to offer instead of this exception
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+          example: false
+        error_code:
+          type: integer
+          description: Error code
+          enum:
+          - 500
+          - 501
+          - 600
+          - 606
+          - 607
+        description:
+          type: string
+          description: Human-readable error description
     ExceptionListResponse:
       type: object
       properties:
@@ -238,6 +230,14 @@ components:
                 $ref: '#/components/schemas/ExceptionResponse/properties/response'
             total:
               type: integer
+    SuccessResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+          example: true
+        response:
+          type: object
   responses:
     ErrorResponse:
       description: API error

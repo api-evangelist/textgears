@@ -146,6 +146,20 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
 components:
   schemas:
+    DictionaryResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        response:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Dictionary identifier
+            title:
+              type: string
+              description: Dictionary title
     ErrorResponse:
       type: object
       properties:
@@ -164,20 +178,6 @@ components:
         description:
           type: string
           description: Human-readable error description
-    DictionaryResponse:
-      type: object
-      properties:
-        status:
-          type: boolean
-        response:
-          type: object
-          properties:
-            id:
-              type: string
-              description: Dictionary identifier
-            title:
-              type: string
-              description: Dictionary title
     SuccessResponse:
       type: object
       properties:

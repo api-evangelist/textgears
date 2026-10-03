@@ -85,6 +85,23 @@ components:
                 format: date
               requests:
                 type: integer
+    QuotaResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        response:
+          type: object
+          properties:
+            limit:
+              type: integer
+              description: Total request limit
+            used:
+              type: integer
+              description: Requests used
+            remaining:
+              type: integer
+              description: Remaining requests
     ErrorResponse:
       type: object
       properties:
@@ -103,23 +120,6 @@ components:
         description:
           type: string
           description: Human-readable error description
-    QuotaResponse:
-      type: object
-      properties:
-        status:
-          type: boolean
-        response:
-          type: object
-          properties:
-            limit:
-              type: integer
-              description: Total request limit
-            used:
-              type: integer
-              description: Requests used
-            remaining:
-              type: integer
-              description: Remaining requests
   responses:
     ErrorResponse:
       description: API error
