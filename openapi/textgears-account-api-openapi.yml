@@ -70,21 +70,6 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
 components:
   schemas:
-    UsageResponse:
-      type: object
-      properties:
-        status:
-          type: boolean
-        response:
-          type: array
-          items:
-            type: object
-            properties:
-              date:
-                type: string
-                format: date
-              requests:
-                type: integer
     QuotaResponse:
       type: object
       properties:
@@ -120,6 +105,21 @@ components:
         description:
           type: string
           description: Human-readable error description
+    UsageResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        response:
+          type: array
+          items:
+            type: object
+            properties:
+              date:
+                type: string
+                format: date
+              requests:
+                type: integer
   responses:
     ErrorResponse:
       description: API error

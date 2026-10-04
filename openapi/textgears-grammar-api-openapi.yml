@@ -213,7 +213,60 @@ paths:
         '400':
           $ref: '#/components/responses/ErrorResponse'
 components:
+  responses:
+    ErrorResponse:
+      description: API error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            invalidKey:
+              summary: Invalid API key
+              value:
+                status: false
+                error_code: 600
+                description: Invalid key
+            rateLimitExceeded:
+              summary: Rate limit exceeded
+              value:
+                status: false
+                error_code: 607
+                description: Request limit exceeded
   schemas:
+    TransformRequest:
+      allOf:
+      - $ref: '#/components/schemas/CheckRequest'
+      - type: object
+        properties:
+          creativity:
+            type: number
+            description: Creativity level for paraphrasing (0.0 to 1.0)
+            minimum: 0
+            maximum: 1
+    SplitResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        response:
+          type: object
+          properties:
+            sentences:
+              type: array
+              items:
+                type: string
+    TransformResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        response:
+          type: object
+          properties:
+            result:
+              type: string
+              description: Transformed text output
     CorrectResponse:
       type: object
       properties:
@@ -238,16 +291,24 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/GrammarError'
-    CheckRequest:
-      allOf:
-      - $ref: '#/components/schemas/BaseRequest'
-      - type: object
-        properties:
-          rules:
-            type: array
-            items:
-              type: string
-            description: Specific grammar rules to apply or exclude
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+          example: false
+        error_code:
+          type: integer
+          description: Error code
+          enum:
+          - 500
+          - 501
+          - 600
+          - 606
+          - 607
+        description:
+          type: string
+          description: Human-readable error description
     TranslateRequest:
       allOf:
       - $ref: '#/components/schemas/TransformRequest'
@@ -259,6 +320,16 @@ components:
             type: string
             description: Target language code for translation
             example: fr-FR
+    CheckRequest:
+      allOf:
+      - $ref: '#/components/schemas/BaseRequest'
+      - type: object
+        properties:
+          rules:
+            type: array
+            items:
+              type: string
+            description: Specific grammar rules to apply or exclude
     BaseRequest:
       type: object
       required:
@@ -306,57 +377,6 @@ components:
         dictionary_id:
           type: string
           description: Custom dictionary identifier to use for exception lookup
-    ErrorResponse:
-      type: object
-      properties:
-        status:
-          type: boolean
-          example: false
-        error_code:
-          type: integer
-          description: Error code
-          enum:
-          - 500
-          - 501
-          - 600
-          - 606
-          - 607
-        description:
-          type: string
-          description: Human-readable error description
-    TransformRequest:
-      allOf:
-      - $ref: '#/components/schemas/CheckRequest'
-      - type: object
-        properties:
-          creativity:
-            type: number
-            description: Creativity level for paraphrasing (0.0 to 1.0)
-            minimum: 0
-            maximum: 1
-    SplitResponse:
-      type: object
-      properties:
-        status:
-          type: boolean
-        response:
-          type: object
-          properties:
-            sentences:
-              type: array
-              items:
-                type: string
-    TransformResponse:
-      type: object
-      properties:
-        status:
-          type: boolean
-        response:
-          type: object
-          properties:
-            result:
-              type: string
-              description: Transformed text output
     GrammarError:
       type: object
       properties:
@@ -388,26 +408,6 @@ components:
         description:
           type: string
           description: Human-readable error description
-  responses:
-    ErrorResponse:
-      description: API error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          examples:
-            invalidKey:
-              summary: Invalid API key
-              value:
-                status: false
-                error_code: 600
-                description: Invalid key
-            rateLimitExceeded:
-              summary: Rate limit exceeded
-              value:
-                status: false
-                error_code: 607
-                description: Request limit exceeded
   securitySchemes:
     apiKeyQuery:
       type: apiKey

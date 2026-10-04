@@ -60,26 +60,6 @@ paths:
         '400':
           $ref: '#/components/responses/ErrorResponse'
 components:
-  responses:
-    ErrorResponse:
-      description: API error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          examples:
-            invalidKey:
-              summary: Invalid API key
-              value:
-                status: false
-                error_code: 600
-                description: Invalid key
-            rateLimitExceeded:
-              summary: Rate limit exceeded
-              value:
-                status: false
-                error_code: 607
-                description: Request limit exceeded
   schemas:
     ErrorResponse:
       type: object
@@ -99,17 +79,6 @@ components:
         description:
           type: string
           description: Human-readable error description
-    DetectRequest:
-      type: object
-      required:
-      - text
-      properties:
-        text:
-          type: string
-          description: UTF-8 encoded text for language detection
-        key:
-          type: string
-          description: API authentication key
     DetectResponse:
       type: object
       properties:
@@ -131,6 +100,37 @@ components:
                   score:
                     type: number
                     description: Probability score (0.0 to 1.0)
+    DetectRequest:
+      type: object
+      required:
+      - text
+      properties:
+        text:
+          type: string
+          description: UTF-8 encoded text for language detection
+        key:
+          type: string
+          description: API authentication key
+  responses:
+    ErrorResponse:
+      description: API error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            invalidKey:
+              summary: Invalid API key
+              value:
+                status: false
+                error_code: 600
+                description: Invalid key
+            rateLimitExceeded:
+              summary: Rate limit exceeded
+              value:
+                status: false
+                error_code: 607
+                description: Request limit exceeded
   securitySchemes:
     apiKeyQuery:
       type: apiKey

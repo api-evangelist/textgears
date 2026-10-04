@@ -145,70 +145,6 @@ paths:
         '400':
           $ref: '#/components/responses/ErrorResponse'
 components:
-  schemas:
-    DictionaryResponse:
-      type: object
-      properties:
-        status:
-          type: boolean
-        response:
-          type: object
-          properties:
-            id:
-              type: string
-              description: Dictionary identifier
-            title:
-              type: string
-              description: Dictionary title
-    ErrorResponse:
-      type: object
-      properties:
-        status:
-          type: boolean
-          example: false
-        error_code:
-          type: integer
-          description: Error code
-          enum:
-          - 500
-          - 501
-          - 600
-          - 606
-          - 607
-        description:
-          type: string
-          description: Human-readable error description
-    SuccessResponse:
-      type: object
-      properties:
-        status:
-          type: boolean
-          example: true
-        response:
-          type: object
-    DictionaryRequest:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Custom dictionary identifier
-        title:
-          type: string
-          description: Human-readable dictionary title
-    DictionaryListResponse:
-      type: object
-      properties:
-        status:
-          type: boolean
-        response:
-          type: object
-          properties:
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/DictionaryResponse/properties/response'
-            total:
-              type: integer
   responses:
     ErrorResponse:
       description: API error
@@ -229,6 +165,70 @@ components:
                 status: false
                 error_code: 607
                 description: Request limit exceeded
+  schemas:
+    DictionaryResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        response:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Dictionary identifier
+            title:
+              type: string
+              description: Dictionary title
+    DictionaryRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Custom dictionary identifier
+        title:
+          type: string
+          description: Human-readable dictionary title
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+          example: false
+        error_code:
+          type: integer
+          description: Error code
+          enum:
+          - 500
+          - 501
+          - 600
+          - 606
+          - 607
+        description:
+          type: string
+          description: Human-readable error description
+    DictionaryListResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        response:
+          type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/DictionaryResponse/properties/response'
+            total:
+              type: integer
+    SuccessResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+          example: true
+        response:
+          type: object
   securitySchemes:
     apiKeyQuery:
       type: apiKey

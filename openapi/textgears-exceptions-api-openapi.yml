@@ -149,6 +149,26 @@ paths:
         '400':
           $ref: '#/components/responses/ErrorResponse'
 components:
+  responses:
+    ErrorResponse:
+      description: API error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            invalidKey:
+              summary: Invalid API key
+              value:
+                status: false
+                error_code: 600
+                description: Invalid key
+            rateLimitExceeded:
+              summary: Rate limit exceeded
+              value:
+                status: false
+                error_code: 607
+                description: Request limit exceeded
   schemas:
     ExceptionResponse:
       type: object
@@ -238,26 +258,6 @@ components:
           example: true
         response:
           type: object
-  responses:
-    ErrorResponse:
-      description: API error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          examples:
-            invalidKey:
-              summary: Invalid API key
-              value:
-                status: false
-                error_code: 600
-                description: Invalid key
-            rateLimitExceeded:
-              summary: Rate limit exceeded
-              value:
-                status: false
-                error_code: 607
-                description: Request limit exceeded
   securitySchemes:
     apiKeyQuery:
       type: apiKey

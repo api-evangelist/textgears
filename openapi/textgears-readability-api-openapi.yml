@@ -76,7 +76,60 @@ paths:
         '400':
           $ref: '#/components/responses/ErrorResponse'
 components:
+  responses:
+    ErrorResponse:
+      description: API error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            invalidKey:
+              summary: Invalid API key
+              value:
+                status: false
+                error_code: 600
+                description: Invalid key
+            rateLimitExceeded:
+              summary: Rate limit exceeded
+              value:
+                status: false
+                error_code: 607
+                description: Request limit exceeded
   schemas:
+    AnalyzeResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        response:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                $ref: '#/components/schemas/GrammarError'
+            stats:
+              type: object
+              description: Text statistics and readability metrics
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+          example: false
+        error_code:
+          type: integer
+          description: Error code
+          enum:
+          - 500
+          - 501
+          - 600
+          - 606
+          - 607
+        description:
+          type: string
+          description: Human-readable error description
     CheckRequest:
       allOf:
       - $ref: '#/components/schemas/BaseRequest'
@@ -87,40 +140,6 @@ components:
             items:
               type: string
             description: Specific grammar rules to apply or exclude
-    ReadabilityResponse:
-      type: object
-      properties:
-        status:
-          type: boolean
-        response:
-          type: object
-          properties:
-            stats:
-              type: object
-              description: Text statistics
-              properties:
-                fleschKincaid:
-                  type: object
-                  properties:
-                    readingEase:
-                      type: number
-                    grade:
-                      type: number
-                gunningFog:
-                  type: number
-                colemanLiau:
-                  type: number
-                smog:
-                  type: number
-                wordCount:
-                  type: integer
-                sentenceCount:
-                  type: integer
-                characterCount:
-                  type: integer
-            emotion:
-              type: object
-              description: Emotion analysis results
     BaseRequest:
       type: object
       required:
@@ -168,39 +187,6 @@ components:
         dictionary_id:
           type: string
           description: Custom dictionary identifier to use for exception lookup
-    ErrorResponse:
-      type: object
-      properties:
-        status:
-          type: boolean
-          example: false
-        error_code:
-          type: integer
-          description: Error code
-          enum:
-          - 500
-          - 501
-          - 600
-          - 606
-          - 607
-        description:
-          type: string
-          description: Human-readable error description
-    AnalyzeResponse:
-      type: object
-      properties:
-        status:
-          type: boolean
-        response:
-          type: object
-          properties:
-            errors:
-              type: array
-              items:
-                $ref: '#/components/schemas/GrammarError'
-            stats:
-              type: object
-              description: Text statistics and readability metrics
     GrammarError:
       type: object
       properties:
@@ -232,26 +218,40 @@ components:
         description:
           type: string
           description: Human-readable error description
-  responses:
-    ErrorResponse:
-      description: API error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          examples:
-            invalidKey:
-              summary: Invalid API key
-              value:
-                status: false
-                error_code: 600
-                description: Invalid key
-            rateLimitExceeded:
-              summary: Rate limit exceeded
-              value:
-                status: false
-                error_code: 607
-                description: Request limit exceeded
+    ReadabilityResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        response:
+          type: object
+          properties:
+            stats:
+              type: object
+              description: Text statistics
+              properties:
+                fleschKincaid:
+                  type: object
+                  properties:
+                    readingEase:
+                      type: number
+                    grade:
+                      type: number
+                gunningFog:
+                  type: number
+                colemanLiau:
+                  type: number
+                smog:
+                  type: number
+                wordCount:
+                  type: integer
+                sentenceCount:
+                  type: integer
+                characterCount:
+                  type: integer
+            emotion:
+              type: object
+              description: Emotion analysis results
   securitySchemes:
     apiKeyQuery:
       type: apiKey
