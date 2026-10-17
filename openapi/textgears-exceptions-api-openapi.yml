@@ -149,27 +149,21 @@ paths:
         '400':
           $ref: '#/components/responses/ErrorResponse'
 components:
-  responses:
-    ErrorResponse:
-      description: API error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          examples:
-            invalidKey:
-              summary: Invalid API key
-              value:
-                status: false
-                error_code: 600
-                description: Invalid key
-            rateLimitExceeded:
-              summary: Rate limit exceeded
-              value:
-                status: false
-                error_code: 607
-                description: Request limit exceeded
   schemas:
+    ExceptionListResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        response:
+          type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/ExceptionResponse/properties/response'
+            total:
+              type: integer
     ExceptionResponse:
       type: object
       properties:
@@ -218,6 +212,14 @@ components:
           items:
             type: string
           description: Alternative suggestions to offer instead of this exception
+    SuccessResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+          example: true
+        response:
+          type: object
     ErrorResponse:
       type: object
       properties:
@@ -236,28 +238,26 @@ components:
         description:
           type: string
           description: Human-readable error description
-    ExceptionListResponse:
-      type: object
-      properties:
-        status:
-          type: boolean
-        response:
-          type: object
-          properties:
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/ExceptionResponse/properties/response'
-            total:
-              type: integer
-    SuccessResponse:
-      type: object
-      properties:
-        status:
-          type: boolean
-          example: true
-        response:
-          type: object
+  responses:
+    ErrorResponse:
+      description: API error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            invalidKey:
+              summary: Invalid API key
+              value:
+                status: false
+                error_code: 600
+                description: Invalid key
+            rateLimitExceeded:
+              summary: Rate limit exceeded
+              value:
+                status: false
+                error_code: 607
+                description: Request limit exceeded
   securitySchemes:
     apiKeyQuery:
       type: apiKey
