@@ -64,32 +64,158 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-TextGears is a grammar checking and text analysis REST API providing spelling corrections, grammar error detection, readability scoring, language detection, and text summarization across 11 languages. The service processes over 10.8 million API requests daily across 830+ companies, with distributed infrastructure in Estonia, Singapore, and the United States.
+TextGears is a grammar checking and text analysis REST API providing spelling corrections, grammar error detection, readability scoring, language detection, and text summarization across 11 languages. The service processes over 10.8 million API requests daily and offers distributed infrastructure across Estonia, Singapore, and the United States for low-latency access.
 
-## API Capabilities
+**Areas:** Grammar · Spelling · Text Analysis · Readability · Natural Language Processing · Text Summarization · Language Detection
 
-- Grammar, spelling, punctuation, and style checking (`/grammar`)
-- Typo detection (`/spelling`)
-- Auto-correction (`/correct`, `/suggest`)
-- Readability metrics — Flesch-Kincaid, Gunning Fog, Coleman-Liau, SMOG (`/readability`)
-- Comprehensive analysis including emotion detection (`/analyze`)
-- Language and dialect identification (`/detect`)
-- Text summarization and keyword extraction (`/summarize`)
-- Custom dictionary management
+## TextGears on APIs.io
 
-## Supported Languages
+Everything profiled for TextGears is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/textgears/](https://apis.io/providers/textgears/)** — or go straight to one of the APIs or properties below.
 
-English (US, GB, AU, NZ, ZA), French, German, Portuguese, Russian, Italian, Arabic, Spanish, Japanese, Chinese (Simplified), Greek
+### APIs (7)
 
-## Authentication
+- [TextGears Account API](https://apis.io/apis/textgears/textgears-account-api/) — Account usage and quota management
+- [TextGears Dictionaries API](https://apis.io/apis/textgears/textgears-dictionaries-api/) — Custom dictionary management
+- [TextGears Exceptions API](https://apis.io/apis/textgears/textgears-exceptions-api/) — Custom exception (whitelist) management
+- [TextGears Grammar API](https://apis.io/apis/textgears/textgears-grammar-api/) — Grammar and spelling error detection and correction
+- [TextGears Language API](https://apis.io/apis/textgears/textgears-language-api/) — Language detection
+- [TextGears Readability API](https://apis.io/apis/textgears/textgears-readability-api/) — Text readability scoring and analysis
+- [TextGears Summarization API](https://apis.io/apis/textgears/textgears-summarization-api/) — Text summarization and keyword extraction
 
-API key passed as a query parameter, POST body field, JSON body field, or HTTP `Authorization: Basic` header.
+### Published properties
 
-## Links
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-- Website: https://textgears.com
-- API Documentation: https://textgears.com/api
-- Pricing: https://textgears.com/#pricing
-- GitHub: https://github.com/textgears
-- LinkedIn: https://www.linkedin.com/company/textgears
-- X: https://x.com/textgears
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Textgears Agentic Access](https://apis.io/agentic-access/textgears/textgears-agentic-access/)
+
+#### JSON Schema (3)
+
+The data models the API reads and writes.
+
+- [Language Detection Response](https://apis.io/schemas/textgears/detect-response/)
+- [Grammar Check Request](https://apis.io/schemas/textgears/grammar-request/)
+- [Grammar Check Response](https://apis.io/schemas/textgears/grammar-response/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Textgears Context](https://apis.io/jsonld/textgears/textgears/)
+
+#### Examples (5)
+
+Example requests and responses.
+
+- [Detect Language](https://apis.io/examples/textgears/detect-language/)
+- [Grammar Check](https://apis.io/examples/textgears/grammar-check/)
+- [Readability](https://apis.io/examples/textgears/readability/)
+- [Spelling Check](https://apis.io/examples/textgears/spelling-check/)
+- [Summarize](https://apis.io/examples/textgears/summarize/)
+
+#### Collections (7)
+
+Postman and Open Collection request collections.
+
+- [TextGears Account API](https://apis.io/collections/textgears/open-textgears-account-api/)
+- [TextGears Account Dictionaries API](https://apis.io/collections/textgears/open-textgears-dictionaries-api/)
+- [TextGears Account Exceptions API](https://apis.io/collections/textgears/open-textgears-exceptions-api/)
+- [TextGears Account Grammar API](https://apis.io/collections/textgears/open-textgears-grammar-api/)
+- [TextGears Account Language API](https://apis.io/collections/textgears/open-textgears-language-api/)
+- [TextGears Account Readability API](https://apis.io/collections/textgears/open-textgears-readability-api/)
+- [TextGears Account Summarization API](https://apis.io/collections/textgears/open-textgears-summarization-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [TextGears — jsonschema rules](https://apis.io/rules/textgears/textgears-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Textgears Authentication](https://apis.io/security/textgears/textgears-authentication/)
+- [Textgears Domain Security](https://apis.io/security/textgears/textgears-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Plans](https://apis.io/plans/textgears/plans/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Rate Limits](https://apis.io/rate-limits/textgears/rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Finops](https://apis.io/finops/textgears/finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://textgears.com)
+- [Documentation](https://textgears.com/api)
+- [Pricing](https://textgears.com/#pricing)
+
+## API Evangelist rating
+
+**Kin Score 28.2** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 53.2 |
+| Contract governance | 9.8 |
+| Operational transparency | 5.3 |
+| Developer ergonomics | 21.4 |
+| Access clarity | 13.2 |
+
+**Agent readiness 22.3** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/textgears/](https://apis.io/providers/textgears/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for TextGears: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/textgears/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
